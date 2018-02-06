@@ -10,7 +10,7 @@ namespace Domain
     /// <summary>
     /// representa una campaña de imagenes
     /// </summary>
-    class Campaign
+    public class Campaign
     {
 
         /// <summary>

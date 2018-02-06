@@ -10,9 +10,9 @@ namespace DAL
 {
 
     /// <summary>
-    /// Repositorio generico para el acceso a las campañas
+    /// Repositorio generico para el acceso a las fuentes RSS
     /// </summary>
-    public interface ICampaignRepository : IRepository<Campaign>
+    public interface IRSSSourceRepository : IRepository<RSSSource>
     {
     }
 }

@@ -10,9 +10,9 @@ namespace DAL
 {
 
     /// <summary>
-    /// Repositorio generico para el acceso a las campañas
+    /// Repositorio generico para el acceso a las fuentes de texto
     /// </summary>
-    public interface ICampaignRepository : IRepository<Campaign>
+    public interface ITextSourceRepository : IRepository<TextSource>
     {
     }
 }

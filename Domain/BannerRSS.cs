@@ -10,17 +10,17 @@ namespace Domain
     /// <summary>
     /// banner con fuente RSS
     /// </summary>
-    public class BannerRSS : Banner
+    public class BannerRss : Banner
     {
 
         /// <summary>
         /// url para obtener el feed RSS
         /// </summary>
-        public String url { get; set; }
+        public String Url { get; set; }
 
         /// <summary>
         /// lista de items almacenados para esta fuente
         /// </summary>
-        public IList<RSSItem> rssItems { get; set; }
+        public IList<RssItem> RssItems { get; set; }
     }
 }

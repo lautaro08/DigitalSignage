@@ -10,16 +10,21 @@ namespace Domain
     /// <summary>
     /// item rss
     /// </summary>
-    public class RSSItem
+    public class RssItem
     {
         /// <summary>
         /// id unico
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// FK al banner al que pertenece el item RSS
+        /// </summary>
+        public int BannerId { get; set; }
 
         /// <summary>
         /// descripcion del item RSS
         /// </summary>
-        public String description { get; set; }
+        public String Description { get; set; }
     }
 }

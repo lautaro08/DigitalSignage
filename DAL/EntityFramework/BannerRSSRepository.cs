@@ -6,10 +6,10 @@ namespace DAL.EntityFramework
     /// <summary>
     /// repositorio de entidad fuente RSS
     /// </summary>
-    class BannerRSSRepository : Repository<BannerRSS, DigitalSignageDbContext>, IBannerRSSRepository
+    public class BannerRssRepository : Repository<BannerRss, DigitalSignageDbContext>, IBannerRssRepository
     {
 
-        public BannerRSSRepository(DigitalSignageDbContext pContext) : base(pContext)
+        public BannerRssRepository(DigitalSignageDbContext pContext) : base(pContext)
         {
         }
     }

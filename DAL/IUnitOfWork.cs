@@ -15,22 +15,22 @@ namespace DAL
         /// <summary>
         /// Da acceso al repositorio de banners
         /// </summary>
-        IBannerRepository bannerRepository { get; }
+        IBannerRepository BannerRepository { get; }
 
         /// <summary>
         /// Da acceso al repositorio de fuentes RSS
         /// </summary>
-        IBannerRSSRepository rssSourceRepository { get; }
+        IBannerRssRepository BannerRssRepository { get; }
 
         /// <summary>
         /// Da acceso al repositorio de fuentes de texto
         /// </summary>
-        IBannerTextRepository textSourceRepository { get; }
+        IBannerTextRepository BannerTextRepository { get; }
 
         /// <summary>
         /// Da acceso al repositorio de campañas
         /// </summary>
-        ICampaignRepository campaignRepository { get; }
+        ICampaignRepository CampaignRepository { get; }
 
         /// <summary>
         /// persiste los cambios

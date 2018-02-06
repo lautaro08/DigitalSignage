@@ -12,7 +12,7 @@ namespace DAL
     /// <summary>
     /// Repositorio generico para el acceso a las fuentes RSS
     /// </summary>
-    public interface IBannerRSSRepository : IRepository<BannerRSS>
+    public interface IBannerRssRepository : IRepository<BannerRss>
     {
     }
 }

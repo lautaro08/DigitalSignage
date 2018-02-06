@@ -10,7 +10,7 @@ namespace DAL.EntityFramework
     /// <summary>
     /// Implementación del patrón Unidad de Trabajo
     /// </summary>
-    class UnitOfWork : IUnitOfWork
+    public class UnitOfWork : IUnitOfWork
     {
 
         private readonly DigitalSignageDbContext iDbContext;
@@ -21,12 +21,23 @@ namespace DAL.EntityFramework
         public UnitOfWork(DigitalSignageDbContext pContext)
         {
 
+            if (pContext == null)
+            {
+                throw new ArgumentNullException(nameof(pContext));
+            }
+
+            this.iDbContext = pContext;
+            this.CampaignRepository = new CampaignRepository(this.iDbContext);
+            this.BannerRepository = new BannerRepository(this.iDbContext);
+            this.BannerRssRepository = new BannerRssRepository(this.iDbContext);
+            this.BannerTextRepository = new BannerTextRepository(this.iDbContext);
+
         }
 
         /// <summary>
         /// repositorio de banners
         /// </summary>
-        public IBannerRepository bannerRepository
+        public IBannerRepository BannerRepository
         {
             get; private set;
         }
@@ -34,7 +45,7 @@ namespace DAL.EntityFramework
         /// <summary>
         /// repositorio de campañas
         /// </summary>
-        public ICampaignRepository campaignRepository
+        public ICampaignRepository CampaignRepository
         {
             get; private set;
         }
@@ -42,7 +53,7 @@ namespace DAL.EntityFramework
         /// <summary>
         /// repositorio de fuentes RSS
         /// </summary>
-        public IBannerRSSRepository rssSourceRepository
+        public IBannerRssRepository BannerRssRepository
         {
             get; private set;
         }
@@ -50,7 +61,7 @@ namespace DAL.EntityFramework
         /// <summary>
         /// repositorio de fuentes de texto
         /// </summary>
-        public IBannerTextRepository textSourceRepository
+        public IBannerTextRepository BannerTextRepository
         {
             get; private set;
         }

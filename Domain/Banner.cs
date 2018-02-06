@@ -16,38 +16,38 @@ namespace Domain
         /// <summary>
         /// id unico del banner
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
 
         /// <summary>
         /// nombre del banner
         /// </summary>
-        public String name { get; set; }
+        public String Name { get; set; }
 
         /// <summary>
         /// descripcion del banner
         /// </summary>
-        public String description { get; set; }
+        public String Description { get; set; }
 
         /// <summary>
         /// fecha de inicio del banner
         /// </summary>
-        public DateTime initDate { get; set; }
+        public DateTime InitDate { get; set; }
 
 
         /// <summary>
         /// fecha de fin del banner
         /// </summary>
-        public DateTime endDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         /// <summary>
         /// hora de inicio del banner
         /// </summary>
-        public TimeSpan initTime { get; set; }
+        public TimeSpan InitTime { get; set; }
 
         /// <summary>
         /// hora de finalizacion del banner
         /// </summary>
-        public TimeSpan endTime { get; set; }
+        public TimeSpan EndTime { get; set; }
 
     }
 }

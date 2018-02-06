@@ -16,22 +16,27 @@ namespace Domain
         /// <summary>
         /// id unico que identifica la imagen
         /// </summary>
-        public int id { get; set; }
+        public int Id { get; set; }
+
+        /// <summary>
+        /// FK al banner al que pertenece la imagen
+        /// </summary>
+        public int CampaignId { get; set; }
 
         /// <summary>
         /// descripcion de la imagen
         /// </summary>
-        public String description { get; set; }
+        public String Description { get; set; }
 
         /// <summary>
         /// bytes que componen la imagen
         /// </summary>
-        public Byte[] bytes { get; set; }
+        public Byte[] Bytes { get; set; }
 
         /// <summary>
         /// duracion en segundos de la imagen en pantalla
         /// </summary>
-        public int duration { get; set; }
+        public int Duration { get; set; }
 
     }
 }

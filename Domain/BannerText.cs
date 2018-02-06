@@ -16,6 +16,6 @@ namespace Domain
         /// <summary>
         /// texto de la fuente
         /// </summary>
-        public String texto { get; set; }
+        public String Text { get; set; }
     }
 }

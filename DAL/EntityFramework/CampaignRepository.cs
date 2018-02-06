@@ -11,7 +11,7 @@ namespace DAL.EntityFramework
     /// <summary>
     /// Repositorio de entidad camapaña
     /// </summary>
-    class CampaignRepository : Repository<Campaign, DigitalSignageDbContext>, ICampaignRepository
+    public class CampaignRepository : Repository<Campaign, DigitalSignageDbContext>, ICampaignRepository
     {
         public CampaignRepository(DigitalSignageDbContext pContext) : base(pContext)
         {

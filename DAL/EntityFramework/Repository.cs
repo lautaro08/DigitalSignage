@@ -11,7 +11,7 @@ namespace DAL.EntityFramework
     /// </summary>
     /// <typeparam name="TEntity">Entidad de dominio la cual se realizará el repositorio</typeparam>
     /// <typeparam name="TDbContext">Contexto de acceso a BBDD</typeparam>
-    abstract class Repository<TEntity, TDbContext> : IRepository<TEntity>
+    public abstract class Repository<TEntity, TDbContext> : IRepository<TEntity>
         where TEntity : class
         where TDbContext : DbContext
     {
@@ -83,4 +83,4 @@ namespace DAL.EntityFramework
         }
     }
 }
-}
+

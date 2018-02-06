@@ -19,6 +19,11 @@ namespace Domain
         public int id { get; set; }
 
         /// <summary>
+        /// nombre de la campaña
+        /// </summary>
+        public String name { get; set; }
+
+        /// <summary>
         /// descripcion de la campaña
         /// </summary>
         public String description { get; set; }

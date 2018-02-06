@@ -12,7 +12,7 @@ namespace DAL
     /// <summary>
     /// Repositorio generico para el acceso a las fuentes de texto
     /// </summary>
-    public interface ITextSourceRepository : IRepository<TextSource>
+    public interface IBannerTextRepository : IRepository<BannerText>
     {
     }
 }

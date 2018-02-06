@@ -8,9 +8,9 @@ namespace Domain
 {
 
     /// <summary>
-    /// fuente de RSS para el banner
+    /// banner con fuente RSS
     /// </summary>
-    public class RSSSource : BannerSource
+    public class BannerRSS : Banner
     {
 
         /// <summary>

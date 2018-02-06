@@ -18,12 +18,12 @@ namespace DAL.EntityFramework
         /// <summary>
         /// fuentes RsS
         /// </summary>
-        public DbSet<RSSSource> rssSources { get; set; }
+        public DbSet<BannerRSS> rssSources { get; set; }
 
         /// <summary>
         /// fuentes de texto
         /// </summary>
-        public DbSet<TextSource> textSources { get; set; }
+        public DbSet<BannerText> textSources { get; set; }
 
         /// <summary>
         /// items RSS

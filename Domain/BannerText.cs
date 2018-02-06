@@ -8,9 +8,9 @@ namespace Domain
 {
 
     /// <summary>
-    /// fuente de texto para el banner
+    /// banner con fuente de texto
     /// </summary>
-    public class TextSource
+    public class BannerText : Banner
     {
 
         /// <summary>

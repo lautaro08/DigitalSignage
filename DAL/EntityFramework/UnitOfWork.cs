@@ -42,7 +42,7 @@ namespace DAL.EntityFramework
         /// <summary>
         /// repositorio de fuentes RSS
         /// </summary>
-        public IRSSSourceRepository rssSourceRepository
+        public IBannerRSSRepository rssSourceRepository
         {
             get; private set;
         }
@@ -50,7 +50,7 @@ namespace DAL.EntityFramework
         /// <summary>
         /// repositorio de fuentes de texto
         /// </summary>
-        public ITextSourceRepository textSourceRepository
+        public IBannerTextRepository textSourceRepository
         {
             get; private set;
         }

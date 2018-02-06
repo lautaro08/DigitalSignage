@@ -19,6 +19,11 @@ namespace Domain
         public int id { get; set; }
 
         /// <summary>
+        /// nombre del banner
+        /// </summary>
+        public String name { get; set; }
+
+        /// <summary>
         /// descripcion del banner
         /// </summary>
         public String description { get; set; }
@@ -43,11 +48,6 @@ namespace Domain
         /// hora de finalizacion del banner
         /// </summary>
         public TimeSpan endTime { get; set; }
-
-        /// <summary>
-        /// fuente del texto para el banner
-        /// </summary>
-        public BannerSource source { get; set; }
 
     }
 }

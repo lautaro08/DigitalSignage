@@ -41,14 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Banner.cs" />
-    <Compile Include="BannerSource.cs" />
     <Compile Include="Campaign.cs" />
     <Compile Include="Image.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RSSItem.cs" />
-    <Compile Include="RSSSource.cs" />
-    <Compile Include="SourceType.cs" />
-    <Compile Include="TextSource.cs" />
+    <Compile Include="BannerRSS.cs" />
+    <Compile Include="BannerText.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

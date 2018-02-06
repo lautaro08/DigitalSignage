@@ -20,12 +20,12 @@ namespace DAL
         /// <summary>
         /// Da acceso al repositorio de fuentes RSS
         /// </summary>
-        IRSSSourceRepository rssSourceRepository { get; }
+        IBannerRSSRepository rssSourceRepository { get; }
 
         /// <summary>
         /// Da acceso al repositorio de fuentes de texto
         /// </summary>
-        ITextSourceRepository textSourceRepository { get; }
+        IBannerTextRepository textSourceRepository { get; }
 
         /// <summary>
         /// Da acceso al repositorio de campañas

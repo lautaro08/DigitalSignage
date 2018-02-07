@@ -129,5 +129,40 @@ namespace Test
 
         }
 
+        [TestMethod]
+        public void GetCampaignService()
+        {
+
+            var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
+
+            CampaignService cS = new CampaignService(uow);
+
+            Campaign campaign = new Campaign();
+
+            campaign.Name = "nueva campaña";
+            campaign.Description = "qsy";
+            campaign.InitDate = new DateTime().AddYears(2018);
+            campaign.EndDate = new DateTime().AddYears(2018);
+            campaign.InitTime = new TimeSpan();
+            campaign.EndTime = new TimeSpan();
+
+            uow.CampaignRepository.Add(campaign);
+            uow.Complete();
+
+            try
+            {
+
+                var result = cS.Get(campaign.Id);
+                Assert.IsNotNull(result);
+
+            }
+            catch (Exception e)
+            {
+                Assert.Fail(e.Message);
+
+            }
+
+        }
+
     }
 }

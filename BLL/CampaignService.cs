@@ -3,6 +3,7 @@ using Domain;
 using DAL;
 using DAL.EntityFramework;
 using System;
+using System.Collections.Generic;
 
 namespace BLL
 {
@@ -134,7 +135,73 @@ namespace BLL
             catch(Exception e)
             {
 
-                log.Info("Error al actualizar camapaña: " + e.Message);
+                log.Error("Error al actualizar camapaña: " + e.Message);
+                throw new Exception();
+
+            }
+
+        }
+
+        /// <summary>
+        /// Obtiene una campaña por su id
+        /// </summary>
+        /// <param name="pId">id de la campaña que se quiere obtener</param>
+        /// <returns></returns>
+        public CampaignDTO Get(int pId)
+        {
+
+            try
+            {
+
+                log.Info("Obteniendo campaña");
+                var campaign = iUnitOfWork.CampaignRepository.Get(pId);
+                log.Info("Campaña obtenida con exito");
+
+                var campaignDTO = new CampaignDTO();
+                AutoMapper.Mapper.Map(campaign, campaignDTO);
+                return campaignDTO;
+
+            }
+            catch(Exception e)
+            {
+
+                log.Error("Error al obtener campaña: " + e.Message);
+                throw new Exception();
+
+            }
+
+        }
+
+
+        /// <summary>
+        /// Obtiene todas las campañas
+        /// </summary>
+        public IEnumerable<CampaignDTO> GetAll()
+        {
+
+            try
+            {
+
+                log.Info("Obteniendo todas las campañas");
+                var campaigns = iUnitOfWork.CampaignRepository.GetAll();
+                log.Info("Campañas obtenidas con exito");
+
+                var enumerator = campaigns.GetEnumerator();
+                var campaignsDTO = new List<CampaignDTO>();
+
+                while (enumerator.MoveNext())
+                {
+                    var aux = AutoMapper.Mapper.Map<CampaignDTO>(enumerator.Current);
+                    campaignsDTO.Add(aux);
+                }
+
+                return campaignsDTO;
+
+            }
+            catch (Exception e)
+            {
+
+                log.Error("Error al obtener campaña: " + e.Message);
                 throw new Exception();
 
             }

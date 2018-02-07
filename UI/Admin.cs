@@ -16,5 +16,26 @@ namespace UI
         {
             InitializeComponent();
         }
+        
+        private void styleMouseEnter(object sender, EventArgs e)
+        {
+
+            var button = ((Button)sender);
+            button.UseVisualStyleBackColor = false;
+            button.BackColor = Color.DarkGray;
+            button.Cursor = Cursors.Hand;
+        }
+
+        private void styleMouseLeave(object sender, EventArgs e)
+        {
+            var button = ((Button)sender);
+            button.UseVisualStyleBackColor = true;
+            button.BackColor = Color.Transparent;
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

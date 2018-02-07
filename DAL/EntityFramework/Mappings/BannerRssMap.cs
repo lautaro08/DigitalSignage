@@ -16,7 +16,7 @@ namespace DAL.EntityFramework.Mappings
             //Especifica que un banner rss tiene muchos items.
             this.HasMany<RssItem>(pBanner => pBanner.RssItems)
                 .WithRequired()
-                .HasForeignKey<int>(i => i.BannerId)
+                .HasForeignKey<int>(i => i.IdBanner)
                 .WillCascadeOnDelete();
 
             // columna 'Url' obligatoria

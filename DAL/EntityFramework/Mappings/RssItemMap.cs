@@ -27,6 +27,10 @@ namespace DAL.EntityFramework.Mappings
             this.Property(pRssItem => pRssItem.Description)
                 .IsRequired();
 
+            // Se establece la columna obligatoria (NOT NULL) 'Description'.
+            this.Property(pRssItem => pRssItem.Url)
+                .IsRequired();
+
         }
 
     }

@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FE3B18E2-A161-4432-8A23-36002207F230}</ProjectGuid>
+    <ProjectGuid>{188BBDAB-96D5-4665-B0B5-DB773ADEE074}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>BLL</RootNamespace>
+    <AssemblyName>BLL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,6 +30,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
       <Private>True</Private>
@@ -38,9 +42,14 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,37 +58,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EntityFramework\BannerRepository.cs" />
-    <Compile Include="EntityFramework\Mappings\BannerRssMap.cs" />
-    <Compile Include="EntityFramework\Mappings\BannerTextMap.cs" />
-    <Compile Include="EntityFramework\CampaignRepository.cs" />
-    <Compile Include="EntityFramework\DigitalSignageDbContext.cs" />
-    <Compile Include="EntityFramework\Mappings\BannerMap.cs" />
-    <Compile Include="EntityFramework\Mappings\CampaignMap.cs" />
-    <Compile Include="EntityFramework\Mappings\ImageMap.cs" />
-    <Compile Include="EntityFramework\Mappings\RssItemMap.cs" />
-    <Compile Include="EntityFramework\Repository.cs" />
-    <Compile Include="EntityFramework\BannerRssRepository.cs" />
-    <Compile Include="EntityFramework\BannerTextRepository.cs" />
-    <Compile Include="EntityFramework\UnitOfWork.cs" />
-    <Compile Include="IBannerRepository.cs" />
-    <Compile Include="ICampaignRepository.cs" />
-    <Compile Include="IRepository.cs" />
-    <Compile Include="IBannerRssRepository.cs" />
-    <Compile Include="IBannerTextRepository.cs" />
-    <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="CampaignService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RssReader\IRssReader.cs" />
+    <Compile Include="RssReader\RawXmlRssReader.cs" />
+    <Compile Include="RssReader\RssReader.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{fe3b18e2-a161-4432-8a23-36002207f230}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{b8225fa9-0bbe-4585-8ae3-a0bbb5e8849a}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{f0e7e8d5-39c2-4ac6-9362-eb191b07ddff}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

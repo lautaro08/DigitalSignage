@@ -1,30 +1,42 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Domain
 {
-
     /// <summary>
-    /// item rss
+    /// Ítem RSS.
     /// </summary>
     public class RssItem
     {
+
         /// <summary>
-        /// id unico
+        /// Id unico del item
         /// </summary>
         public int Id { get; set; }
 
         /// <summary>
-        /// FK al banner al que pertenece el item RSS
+        /// Id del banner al que pertenece
         /// </summary>
-        public int BannerId { get; set; }
+        public int IdBanner { get; set; }
 
         /// <summary>
-        /// descripcion del item RSS
+        /// Título del ítem.
+        /// </summary>
+        public String Title { get; set; }
+
+        /// <summary>
+        /// Descripción acerca del ítem.
         /// </summary>
         public String Description { get; set; }
+
+        /// <summary>
+        /// URL del ítem.
+        /// </summary>
+        public String Url { get; set; }
+
+        /// <summary>
+        /// Fecha de publicación.
+        /// </summary>
+        public DateTime? PublishingDate { get; set; }
+
     }
 }

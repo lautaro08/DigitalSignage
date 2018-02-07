@@ -1,6 +1,6 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using DAL.EntityFramework;
+﻿using DAL.EntityFramework;
 using Domain;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
 namespace Test
@@ -11,7 +11,7 @@ namespace Test
         UnitOfWork unit = new UnitOfWork(new DigitalSignageDbContext());
 
         [TestMethod]
-        public void CreateCampaign()
+        public void CreateCampaignRepsoitory()
         {
 
             Campaign newCampaign = new Campaign()
@@ -36,7 +36,7 @@ namespace Test
 
 
         [TestMethod]
-        public void RemoveCampaign()
+        public void RemoveCampaignRepsoitory()
         {
             Campaign newCampaign = new Campaign()
             {

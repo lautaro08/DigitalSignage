@@ -1,6 +1,7 @@
 ﻿using System.Data.Entity;
 using Domain;
 using DAL.EntityFramework.Mappings;
+using System;
 
 namespace DAL.EntityFramework
 {
@@ -47,9 +48,19 @@ namespace DAL.EntityFramework
         public DigitalSignageDbContext() : base("DigitalSignage")
         {
             //Database.SetInitializer<DigitalSignageDbContext>(new CreateDatabaseIfNotExists<DigitalSignageDbContext>());
-            //Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseIfModelChanges<DigitalSignageDbContext>());
-            Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseAlways<DigitalSignageDbContext>());
+            Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseIfModelChanges<DigitalSignageDbContext>());
+            //Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseAlways<DigitalSignageDbContext>());
             
+        }
+
+        /// <summary>
+        /// Constructor para testing
+        /// </summary>
+        /// <param name="name">nombre de la Base de Datos</param>
+        public DigitalSignageDbContext(String name) : base(name)
+        {
+            // Se establece la estrategia personalizada de inicialización de la BBDD.
+            Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseAlways<DigitalSignageDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder pModelBuilder)

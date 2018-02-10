@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.campaignsGridView = new System.Windows.Forms.DataGridView();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CampaignName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CampaignName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.campaignsGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -40,32 +40,28 @@
             this.campaignsGridView.AllowUserToAddRows = false;
             this.campaignsGridView.AllowUserToDeleteRows = false;
             this.campaignsGridView.AllowUserToOrderColumns = true;
+            this.campaignsGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.campaignsGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.campaignsGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Id,
             this.CampaignName,
             this.Description});
-            this.campaignsGridView.Location = new System.Drawing.Point(12, 82);
+            this.campaignsGridView.GridColor = System.Drawing.Color.White;
+            this.campaignsGridView.Location = new System.Drawing.Point(12, 76);
             this.campaignsGridView.MultiSelect = false;
             this.campaignsGridView.Name = "campaignsGridView";
             this.campaignsGridView.ReadOnly = true;
+            this.campaignsGridView.RowTemplate.Height = 40;
             this.campaignsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.campaignsGridView.Size = new System.Drawing.Size(881, 384);
+            this.campaignsGridView.ShowCellErrors = false;
+            this.campaignsGridView.ShowCellToolTips = false;
+            this.campaignsGridView.ShowEditingIcon = false;
+            this.campaignsGridView.ShowRowErrors = false;
+            this.campaignsGridView.Size = new System.Drawing.Size(881, 390);
             this.campaignsGridView.TabIndex = 0;
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            // 
-            // CampaignName
-            // 
-            this.CampaignName.DataPropertyName = "Name";
-            this.CampaignName.HeaderText = "Nombre";
-            this.CampaignName.Name = "CampaignName";
-            this.CampaignName.ReadOnly = true;
+            this.campaignsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.campaignsGridView_CellContentClick);
             // 
             // Description
             // 
@@ -74,6 +70,20 @@
             this.Description.HeaderText = "Descripcion";
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
+            // 
+            // CampaignName
+            // 
+            this.CampaignName.DataPropertyName = "Name";
+            this.CampaignName.HeaderText = "Nombre";
+            this.CampaignName.Name = "CampaignName";
+            this.CampaignName.ReadOnly = true;
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
             // 
             // CampaignAdmin
             // 

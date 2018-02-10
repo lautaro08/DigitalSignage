@@ -1,6 +1,7 @@
 ﻿using MaterialSkin;
 using MaterialSkin.Controls;
 using System;
+using System.Windows.Forms;
 
 namespace UI
 {
@@ -24,7 +25,9 @@ namespace UI
         private void campaignAdminButton_Click(object sender, EventArgs e)
         {
 
+            this.Cursor = Cursors.WaitCursor;
             var campaignAdmin = new CampaignAdmin();
+            this.Cursor = Cursors.Default;
             campaignAdmin.ShowDialog(this);
 
         }

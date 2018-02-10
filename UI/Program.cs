@@ -24,7 +24,7 @@ namespace UI
             AutoMapperConfig.RegisterMappings();
 
             log.Info("Starting application");
-            Application.Run(new Admin());
+            Application.Run(new MainView());
 
         }
     }

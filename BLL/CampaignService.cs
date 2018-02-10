@@ -7,7 +7,7 @@ using System.Collections.Generic;
 
 namespace BLL
 {
-    public class CampaignService
+    public class CampaignService : ICampaignService
     {
         /// <summary>
         /// Logger
@@ -23,17 +23,6 @@ namespace BLL
         {
 
             this.iUnitOfWork = new UnitOfWork(new DigitalSignageDbContext());
-
-        }
-
-        /// <summary>
-        /// Constructor para utilizar contexto por parametro (PARA TESTING)
-        /// </summary>
-        /// <param name="pUnitOfWork">unidad de trabajo</param>
-        public CampaignService(UnitOfWork pUnitOfWork)
-        {
-
-            this.iUnitOfWork = pUnitOfWork;
 
         }
 

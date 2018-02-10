@@ -23,7 +23,7 @@ namespace Test
 
             var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
 
-            CampaignService cS = new CampaignService(uow);
+            CampaignService cS = new CampaignService();
 
             CampaignDTO campaignDTO = new CampaignDTO();
 
@@ -54,7 +54,7 @@ namespace Test
 
             var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
 
-            CampaignService cS = new CampaignService(uow);
+            CampaignService cS = new CampaignService();
 
             Campaign campaign = new Campaign();
 
@@ -91,7 +91,7 @@ namespace Test
 
             var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
 
-            CampaignService cS = new CampaignService(uow);
+            CampaignService cS = new CampaignService();
 
             Campaign campaign = new Campaign();
 
@@ -135,7 +135,7 @@ namespace Test
 
             var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
 
-            CampaignService cS = new CampaignService(uow);
+            CampaignService cS = new CampaignService();
 
             Campaign campaign = new Campaign();
 

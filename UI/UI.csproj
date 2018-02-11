@@ -45,8 +45,16 @@
       <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="MaterialSkin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll</HintPath>
+    <Reference Include="MetroFramework, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Design, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Design.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MetroFramework.Fonts, Version=1.4.0.0, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.Fonts.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -85,6 +93,12 @@
     <Compile Include="CampaignAdmin.Designer.cs">
       <DependentUpon>CampaignAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="CampaignForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CampaignForm.Designer.cs">
+      <DependentUpon>CampaignForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="IoCContainerLocator.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
@@ -96,6 +110,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="CampaignAdmin.resx">
       <DependentUpon>CampaignAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CampaignForm.resx">
+      <DependentUpon>CampaignForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
@@ -143,6 +160,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\monitor %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\pictures %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fonts.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\exit %281%29.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

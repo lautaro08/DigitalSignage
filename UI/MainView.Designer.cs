@@ -28,132 +28,199 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.operativeViewButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.campaignAdminButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.bannerAdminButton = new MaterialSkin.Controls.MaterialRaisedButton();
-            this.exitButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.components = new System.ComponentModel.Container();
+            this.msmMain = new MetroFramework.Components.MetroStyleManager(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.openOperativeLabel = new MetroFramework.Controls.MetroLabel();
+            this.campaignAdminLabel = new MetroFramework.Controls.MetroLabel();
+            this.bannerAdminLabel = new MetroFramework.Controls.MetroLabel();
+            this.exitLabel = new MetroFramework.Controls.MetroLabel();
+            this.bannerAdminButton = new MetroFramework.Controls.MetroButton();
+            this.exitButton = new MetroFramework.Controls.MetroButton();
+            this.openOperativeButton = new MetroFramework.Controls.MetroButton();
+            this.campaignAdminButton = new MetroFramework.Controls.MetroButton();
+            ((System.ComponentModel.ISupportInitialize)(this.msmMain)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // operativeViewButton
+            // msmMain
             // 
-            this.operativeViewButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.operativeViewButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.operativeViewButton.Depth = 0;
-            this.operativeViewButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.operativeViewButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.operativeViewButton.Location = new System.Drawing.Point(143, 111);
-            this.operativeViewButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.operativeViewButton.Name = "operativeViewButton";
-            this.operativeViewButton.Primary = true;
-            this.operativeViewButton.Size = new System.Drawing.Size(644, 40);
-            this.operativeViewButton.TabIndex = 0;
-            this.operativeViewButton.Text = "abrir ventana publicitaria";
-            this.operativeViewButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.operativeViewButton.UseVisualStyleBackColor = true;
-            this.operativeViewButton.Click += new System.EventHandler(this.operativeViewButton_Click);
-            // 
-            // campaignAdminButton
-            // 
-            this.campaignAdminButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.campaignAdminButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.campaignAdminButton.Depth = 0;
-            this.campaignAdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.campaignAdminButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.campaignAdminButton.Location = new System.Drawing.Point(143, 171);
-            this.campaignAdminButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.campaignAdminButton.Name = "campaignAdminButton";
-            this.campaignAdminButton.Primary = true;
-            this.campaignAdminButton.Size = new System.Drawing.Size(644, 40);
-            this.campaignAdminButton.TabIndex = 1;
-            this.campaignAdminButton.Text = "administrador de camapañas";
-            this.campaignAdminButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.campaignAdminButton.UseVisualStyleBackColor = true;
-            this.campaignAdminButton.Click += new System.EventHandler(this.campaignAdminButton_Click);
-            // 
-            // bannerAdminButton
-            // 
-            this.bannerAdminButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.bannerAdminButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.bannerAdminButton.Depth = 0;
-            this.bannerAdminButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.bannerAdminButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.bannerAdminButton.Location = new System.Drawing.Point(143, 231);
-            this.bannerAdminButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.bannerAdminButton.Name = "bannerAdminButton";
-            this.bannerAdminButton.Primary = true;
-            this.bannerAdminButton.Size = new System.Drawing.Size(644, 40);
-            this.bannerAdminButton.TabIndex = 2;
-            this.bannerAdminButton.Text = "administrador de banners";
-            this.bannerAdminButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.bannerAdminButton.UseVisualStyleBackColor = true;
-            // 
-            // exitButton
-            // 
-            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.exitButton.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.exitButton.Depth = 0;
-            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.exitButton.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.exitButton.Location = new System.Drawing.Point(143, 291);
-            this.exitButton.MouseState = MaterialSkin.MouseState.HOVER;
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Primary = true;
-            this.exitButton.Size = new System.Drawing.Size(644, 40);
-            this.exitButton.TabIndex = 3;
-            this.exitButton.Text = "salir";
-            this.exitButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            this.msmMain.Owner = this;
+            this.msmMain.Theme = MetroFramework.MetroThemeStyle.Dark;
             // 
             // tableLayoutPanel1
             // 
             this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnCount = 6;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 650F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.exitButton, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.campaignAdminButton, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.bannerAdminButton, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.operativeViewButton, 1, 1);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(12, 75);
+            this.tableLayoutPanel1.Controls.Add(this.bannerAdminButton, 3, 1);
+            this.tableLayoutPanel1.Controls.Add(this.exitButton, 4, 1);
+            this.tableLayoutPanel1.Controls.Add(this.bannerAdminLabel, 3, 2);
+            this.tableLayoutPanel1.Controls.Add(this.exitLabel, 4, 2);
+            this.tableLayoutPanel1.Controls.Add(this.openOperativeButton, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.openOperativeLabel, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.campaignAdminButton, 2, 1);
+            this.tableLayoutPanel1.Controls.Add(this.campaignAdminLabel, 2, 2);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(23, 63);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 6;
+            this.tableLayoutPanel1.RowCount = 4;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 300F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(930, 443);
-            this.tableLayoutPanel1.TabIndex = 4;
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(1229, 400);
+            this.tableLayoutPanel1.TabIndex = 3;
+            // 
+            // openOperativeLabel
+            // 
+            this.openOperativeLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.openOperativeLabel.AutoSize = true;
+            this.openOperativeLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.openOperativeLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.openOperativeLabel.Location = new System.Drawing.Point(117, 337);
+            this.openOperativeLabel.Name = "openOperativeLabel";
+            this.openOperativeLabel.Size = new System.Drawing.Size(244, 25);
+            this.openOperativeLabel.TabIndex = 2;
+            this.openOperativeLabel.Text = "Abrir ventana publicitaria";
+            this.openOperativeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // campaignAdminLabel
+            // 
+            this.campaignAdminLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.campaignAdminLabel.AutoSize = true;
+            this.campaignAdminLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.campaignAdminLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.campaignAdminLabel.Location = new System.Drawing.Point(367, 337);
+            this.campaignAdminLabel.Name = "campaignAdminLabel";
+            this.campaignAdminLabel.Size = new System.Drawing.Size(244, 25);
+            this.campaignAdminLabel.TabIndex = 6;
+            this.campaignAdminLabel.Text = "Admin campañas";
+            this.campaignAdminLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bannerAdminLabel
+            // 
+            this.bannerAdminLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.bannerAdminLabel.AutoSize = true;
+            this.bannerAdminLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.bannerAdminLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.bannerAdminLabel.Location = new System.Drawing.Point(617, 337);
+            this.bannerAdminLabel.Name = "bannerAdminLabel";
+            this.bannerAdminLabel.Size = new System.Drawing.Size(244, 25);
+            this.bannerAdminLabel.TabIndex = 7;
+            this.bannerAdminLabel.Text = "Admin banners";
+            this.bannerAdminLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // exitLabel
+            // 
+            this.exitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitLabel.AutoSize = true;
+            this.exitLabel.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.exitLabel.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.exitLabel.Location = new System.Drawing.Point(867, 337);
+            this.exitLabel.Name = "exitLabel";
+            this.exitLabel.Size = new System.Drawing.Size(244, 25);
+            this.exitLabel.TabIndex = 8;
+            this.exitLabel.Text = "Salir";
+            this.exitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // bannerAdminButton
+            // 
+            this.bannerAdminButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.bannerAdminButton.BackgroundImage = global::UI.Properties.Resources.fonts;
+            this.bannerAdminButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.bannerAdminButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.bannerAdminButton.Location = new System.Drawing.Point(624, 86);
+            this.bannerAdminButton.Margin = new System.Windows.Forms.Padding(10);
+            this.bannerAdminButton.Name = "bannerAdminButton";
+            this.bannerAdminButton.Size = new System.Drawing.Size(230, 234);
+            this.bannerAdminButton.TabIndex = 4;
+            this.bannerAdminButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.bannerAdminButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.bannerAdminButton.UseSelectable = true;
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.exitButton.BackgroundImage = global::UI.Properties.Resources.exit__1_;
+            this.exitButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.exitButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.exitButton.Location = new System.Drawing.Point(874, 86);
+            this.exitButton.Margin = new System.Windows.Forms.Padding(10);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(230, 234);
+            this.exitButton.TabIndex = 5;
+            this.exitButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.exitButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.exitButton.UseSelectable = true;
+            this.exitButton.Click += new System.EventHandler(this.exit);
+            // 
+            // openOperativeButton
+            // 
+            this.openOperativeButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.openOperativeButton.BackgroundImage = global::UI.Properties.Resources.monitor__1_;
+            this.openOperativeButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.openOperativeButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.openOperativeButton.Location = new System.Drawing.Point(124, 86);
+            this.openOperativeButton.Margin = new System.Windows.Forms.Padding(10);
+            this.openOperativeButton.Name = "openOperativeButton";
+            this.openOperativeButton.Size = new System.Drawing.Size(230, 234);
+            this.openOperativeButton.TabIndex = 1;
+            this.openOperativeButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.openOperativeButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.openOperativeButton.UseSelectable = true;
+            // 
+            // campaignAdminButton
+            // 
+            this.campaignAdminButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.campaignAdminButton.BackgroundImage = global::UI.Properties.Resources.pictures__1_;
+            this.campaignAdminButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.campaignAdminButton.FontSize = MetroFramework.MetroButtonSize.Tall;
+            this.campaignAdminButton.Location = new System.Drawing.Point(374, 86);
+            this.campaignAdminButton.Margin = new System.Windows.Forms.Padding(10);
+            this.campaignAdminButton.Name = "campaignAdminButton";
+            this.campaignAdminButton.Size = new System.Drawing.Size(230, 234);
+            this.campaignAdminButton.TabIndex = 3;
+            this.campaignAdminButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.campaignAdminButton.Theme = MetroFramework.MetroThemeStyle.Dark;
+            this.campaignAdminButton.UseSelectable = true;
+            this.campaignAdminButton.Click += new System.EventHandler(this.openCampaignAdmin);
             // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(954, 530);
+            this.ClientSize = new System.Drawing.Size(1275, 486);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.ForeColor = System.Drawing.SystemColors.ActiveCaption;
             this.Name = "MainView";
             this.Text = "Digital Signage";
+            ((System.ComponentModel.ISupportInitialize)(this.msmMain)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private MaterialSkin.Controls.MaterialRaisedButton operativeViewButton;
-        private MaterialSkin.Controls.MaterialRaisedButton campaignAdminButton;
-        private MaterialSkin.Controls.MaterialRaisedButton bannerAdminButton;
-        private MaterialSkin.Controls.MaterialRaisedButton exitButton;
+        private MetroFramework.Components.MetroStyleManager msmMain;
+        private MetroFramework.Controls.MetroButton openOperativeButton;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private MetroFramework.Controls.MetroLabel openOperativeLabel;
+        private MetroFramework.Controls.MetroButton bannerAdminButton;
+        private MetroFramework.Controls.MetroButton exitButton;
+        private MetroFramework.Controls.MetroLabel bannerAdminLabel;
+        private MetroFramework.Controls.MetroLabel exitLabel;
+        private MetroFramework.Controls.MetroButton campaignAdminButton;
+        private MetroFramework.Controls.MetroLabel campaignAdminLabel;
     }
 }

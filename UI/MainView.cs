@@ -1,4 +1,5 @@
-﻿using MetroFramework.Forms;
+﻿using MetroFramework;
+using MetroFramework.Forms;
 using System;
 using System.Windows.Forms;
 
@@ -33,6 +34,16 @@ namespace UI
         {
             this.Close();
         }
-        
+
+        public void setLightTheme(object sender, EventArgs e)
+        {
+            this.msmMain.Theme = MetroThemeStyle.Light;
+        }
+
+        public void setDarkTheme(object sender, EventArgs e)
+        {
+            this.msmMain.Theme = MetroThemeStyle.Dark;
+        }
+
     }
 }

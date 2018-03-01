@@ -172,17 +172,10 @@ namespace BLL
             {
 
                 log.Info("Obteniendo todas las campañas");
-                var campaigns = iUnitOfWork.CampaignRepository.GetAll();
+                IEnumerable<Campaign> campaigns = iUnitOfWork.CampaignRepository.GetAll();
                 log.Info("Campañas obtenidas con exito");
 
-                var enumerator = campaigns.GetEnumerator();
-                var campaignsDTO = new List<CampaignDTO>();
-
-                while (enumerator.MoveNext())
-                {
-                    var aux = AutoMapper.Mapper.Map<CampaignDTO>(enumerator.Current);
-                    campaignsDTO.Add(aux);
-                }
+                var campaignsDTO = AutoMapper.Mapper.Map<IEnumerable<Campaign>, IEnumerable<CampaignDTO>>(campaigns);
 
                 return campaignsDTO;
 

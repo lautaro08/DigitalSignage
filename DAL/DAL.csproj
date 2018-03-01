@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\BannerRepository.cs" />
+    <Compile Include="EntityFramework\DatabaseInitialization.cs" />
     <Compile Include="EntityFramework\Mappings\BannerRssMap.cs" />
     <Compile Include="EntityFramework\Mappings\BannerTextMap.cs" />
     <Compile Include="EntityFramework\CampaignRepository.cs" />

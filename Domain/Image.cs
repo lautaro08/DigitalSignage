@@ -17,11 +17,10 @@ namespace Domain
         /// id unico que identifica la imagen
         /// </summary>
         public int Id { get; set; }
-
         /// <summary>
         /// FK al banner al que pertenece la imagen
         /// </summary>
-        public int CampaignId { get; set; }
+        public int CampaignID { get; set; }
 
         /// <summary>
         /// descripcion de la imagen
@@ -37,6 +36,11 @@ namespace Domain
         /// duracion en segundos de la imagen en pantalla
         /// </summary>
         public int Duration { get; set; }
+
+        /// <summary>
+        /// orden de la imagen en la campaña
+        /// </summary>
+        public int Order { get; set; }
 
     }
 }

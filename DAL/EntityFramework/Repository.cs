@@ -55,7 +55,7 @@ namespace DAL.EntityFramework
         /// </summary>
         /// <param name="pId">Identificador de la entidad</param>
         /// <returns>Entidad</returns>
-        public TEntity Get(int pId)
+        public virtual TEntity Get(int pId)
         {
             return this.iDbContext.Set<TEntity>().Find(pId);
         }
@@ -64,7 +64,7 @@ namespace DAL.EntityFramework
         /// Obtiene todas las entidades
         /// </summary>
         /// <returns>Coleccion de entidades</returns>
-        public IEnumerable<TEntity> GetAll()
+        public virtual IEnumerable<TEntity> GetAll()
         {
             return this.iDbContext.Set<TEntity>().ToList();
         }

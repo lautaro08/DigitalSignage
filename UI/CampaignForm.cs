@@ -18,9 +18,36 @@ namespace UI
 
         private CampaignDTO iCampaignModel;
 
-        public CampaignForm()
+        public CampaignForm(CampaignDTO pCampaign)
         {
             InitializeComponent();
+            
+            this.initTimePicker.ShowUpDown = true;
+            this.endTimePicker.ShowUpDown = true;
+
+            this.campaignImagesList.AutoGenerateColumns = false;
+
+            if (pCampaign != null)
+            {
+                this.iCampaignModel = pCampaign;
+                loadImages();
+            }
+            
+        }
+
+        private void loadImages()
+        {
+            this.campaignImagesList.DataSource = this.iCampaignModel.Images;
+        }
+
+        private void CampaignForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void metroTextBox1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

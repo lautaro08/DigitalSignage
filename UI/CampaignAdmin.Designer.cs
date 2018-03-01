@@ -92,6 +92,7 @@
             this.campaignsGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.campaignsGridView.Size = new System.Drawing.Size(859, 392);
             this.campaignsGridView.TabIndex = 0;
+            this.campaignsGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.campaignsGridView_CellContentClick);
             // 
             // Id
             // 

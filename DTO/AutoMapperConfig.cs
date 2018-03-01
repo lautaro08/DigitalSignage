@@ -20,9 +20,7 @@ namespace DTO
                 cfg.CreateMap<Campaign, CampaignDTO>();
 
                 //Para que no mapee las imagenes desde el DTO, hay que hacerlo a mano
-                cfg.CreateMap<Campaign, CampaignDTO>()
-                    .ForMember(dest => dest.Images,
-                               opts => opts.Ignore());
+                cfg.CreateMap<Campaign, CampaignDTO>();
 
                 cfg.CreateMap<Image, ImageDTO>().ReverseMap();
                 cfg.CreateMap<Banner, BannerDTO>().ReverseMap();

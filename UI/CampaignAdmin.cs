@@ -4,6 +4,7 @@ using Microsoft.Practices.Unity;
 using System.Windows.Forms;
 using System.Drawing;
 using MetroFramework.Forms;
+using DTO;
 
 namespace UI
 {
@@ -29,7 +30,10 @@ namespace UI
 
         private void campaignsGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            var camapignForm = new CampaignForm((CampaignDTO)this.campaignsGridView.SelectedRows[0].DataBoundItem);
+            this.StyleManager.Clone(camapignForm);
 
+            camapignForm.ShowDialog(this);
         }
     }
 }

@@ -2,6 +2,7 @@
 using Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Test
 {
@@ -22,6 +23,29 @@ namespace Test
                 EndDate = new System.DateTime(2018, 2, 10),
                 InitTime = new System.TimeSpan(),
                 EndTime = new System.TimeSpan(1),
+                Images = new List<Image> {
+                    new Image()
+                    {
+                        Description = "primer imagen",
+                        Duration = 5,
+                        Order = 1,
+                        Bytes = File.ReadAllBytes("../../../assets/image.jpg")
+                    },
+                    new Image()
+                    {
+                        Description = "segunda imagen",
+                        Duration = 4,
+                        Order = 2,
+                        Bytes = File.ReadAllBytes("../../../assets/image.jpg")
+                    },
+                    new Image()
+                    {
+                        Description = "tercera imagen",
+                        Duration = 7,
+                        Order = 3,
+                        Bytes = File.ReadAllBytes("../../../assets/image.jpg")
+                    }
+                }
             };
 
             unit.CampaignRepository.Add(newCampaign);
@@ -62,5 +86,15 @@ namespace Test
 
             Assert.IsNull(unit.CampaignRepository.Get(addedCampaign.Id));
         }
+
+        [TestMethod]
+        public void GetCampaignRepsoitory()
+        {
+
+            Campaign result = unit.CampaignRepository.Get(1);
+
+            Assert.IsNotNull(result);
+        }
+
     }
 }

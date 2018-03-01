@@ -41,11 +41,11 @@ namespace DAL.EntityFramework.Mappings
             this.Property(pCampign => pCampign.EndTime)
                 .IsRequired();
 
-            //Especifica que una campaña tiene muchas imagenes y que la clave foranea es campaignId.
             this.HasMany<Image>(pCampaign => pCampaign.Images)
                 .WithRequired()
-                .HasForeignKey<int>(i => i.CampaignId)
+                .HasForeignKey<int>(i => i.CampaignID)
                 .WillCascadeOnDelete();
+
         }
 
     }

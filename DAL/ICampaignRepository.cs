@@ -8,5 +8,8 @@ namespace DAL
     /// </summary>
     public interface ICampaignRepository : IRepository<Campaign>
     {
+
+
+
     }
 }

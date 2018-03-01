@@ -16,7 +16,9 @@ namespace DTO
         public int Id { get; set; }
         public String Description { get; set; }
         public Byte[] Bytes { get; set; }
+        public int CampaignID { get; set; }
         public int Duration { get; set; }
+        public int Order { get; set; }
 
     }
 }

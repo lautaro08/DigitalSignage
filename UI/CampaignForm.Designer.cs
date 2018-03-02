@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nameLabel = new MetroFramework.Controls.MetroLabel();
             this.nameTextBox = new MetroFramework.Controls.MetroTextBox();
             this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
@@ -41,18 +42,25 @@
             this.initDatePicker = new MetroFramework.Controls.MetroDateTime();
             this.endDateLabel = new MetroFramework.Controls.MetroLabel();
             this.endDatePicker = new MetroFramework.Controls.MetroDateTime();
-            this.initTimeLabel = new MetroFramework.Controls.MetroLabel();
-            this.initTimePicker = new MetroFramework.Controls.MetroDateTime();
-            this.endTimePicker = new MetroFramework.Controls.MetroDateTime();
-            this.endTimeLabel = new MetroFramework.Controls.MetroLabel();
             this.campignImages = new System.Windows.Forms.ImageList(this.components);
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.campaignImagesList = new MetroFramework.Controls.MetroGrid();
+            this.imagesGridView = new MetroFramework.Controls.MetroGrid();
             this.Image = new System.Windows.Forms.DataGridViewImageColumn();
             this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Duration = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Order = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            ((System.ComponentModel.ISupportInitialize)(this.campaignImagesList)).BeginInit();
+            this.initTimeLabel = new MetroFramework.Controls.MetroLabel();
+            this.initTimeHours = new MetroFramework.Controls.MetroComboBox();
+            this.initTimeMinutes = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.endTimeMinutes = new MetroFramework.Controls.MetroComboBox();
+            this.endTimeHours = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.addImageButton = new MetroFramework.Controls.MetroButton();
+            this.exitButton = new MetroFramework.Controls.MetroButton();
+            this.saveButton = new MetroFramework.Controls.MetroButton();
+            ((System.ComponentModel.ISupportInitialize)(this.imagesGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -93,7 +101,6 @@
             this.nameTextBox.UseSelectable = true;
             this.nameTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.nameTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.nameTextBox.Click += new System.EventHandler(this.metroTextBox1_Click);
             // 
             // descriptionLabel
             // 
@@ -157,7 +164,7 @@
             // endDateLabel
             // 
             this.endDateLabel.AutoSize = true;
-            this.endDateLabel.Location = new System.Drawing.Point(170, 208);
+            this.endDateLabel.Location = new System.Drawing.Point(149, 208);
             this.endDateLabel.Name = "endDateLabel";
             this.endDateLabel.Size = new System.Drawing.Size(80, 19);
             this.endDateLabel.TabIndex = 6;
@@ -166,49 +173,11 @@
             // endDatePicker
             // 
             this.endDatePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.endDatePicker.Location = new System.Drawing.Point(170, 230);
+            this.endDatePicker.Location = new System.Drawing.Point(152, 230);
             this.endDatePicker.MinimumSize = new System.Drawing.Size(0, 29);
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(96, 29);
             this.endDatePicker.TabIndex = 7;
-            // 
-            // initTimeLabel
-            // 
-            this.initTimeLabel.AutoSize = true;
-            this.initTimeLabel.Location = new System.Drawing.Point(23, 271);
-            this.initTimeLabel.Name = "initTimeLabel";
-            this.initTimeLabel.Size = new System.Drawing.Size(91, 19);
-            this.initTimeLabel.TabIndex = 8;
-            this.initTimeLabel.Text = "Hora de inicio";
-            // 
-            // initTimePicker
-            // 
-            this.initTimePicker.CustomFormat = "hh:mm";
-            this.initTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.initTimePicker.Location = new System.Drawing.Point(23, 293);
-            this.initTimePicker.MinimumSize = new System.Drawing.Size(0, 29);
-            this.initTimePicker.Name = "initTimePicker";
-            this.initTimePicker.Size = new System.Drawing.Size(96, 29);
-            this.initTimePicker.TabIndex = 9;
-            // 
-            // endTimePicker
-            // 
-            this.endTimePicker.CustomFormat = "hh:mm";
-            this.endTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.endTimePicker.Location = new System.Drawing.Point(170, 293);
-            this.endTimePicker.MinimumSize = new System.Drawing.Size(0, 29);
-            this.endTimePicker.Name = "endTimePicker";
-            this.endTimePicker.Size = new System.Drawing.Size(96, 29);
-            this.endTimePicker.TabIndex = 11;
-            // 
-            // endTimeLabel
-            // 
-            this.endTimeLabel.AutoSize = true;
-            this.endTimeLabel.Location = new System.Drawing.Point(170, 271);
-            this.endTimeLabel.Name = "endTimeLabel";
-            this.endTimeLabel.Size = new System.Drawing.Size(75, 19);
-            this.endTimeLabel.TabIndex = 10;
-            this.endTimeLabel.Text = "Hora de fin";
             // 
             // campignImages
             // 
@@ -231,15 +200,18 @@
             this.metroLabel1.Text = "Imagenes";
             this.metroLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // campaignImagesList
+            // imagesGridView
             // 
-            this.campaignImagesList.AllowUserToAddRows = false;
-            this.campaignImagesList.AllowUserToDeleteRows = false;
-            this.campaignImagesList.AllowUserToResizeRows = false;
-            this.campaignImagesList.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.campaignImagesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.campaignImagesList.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.campaignImagesList.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.imagesGridView.AllowUserToAddRows = false;
+            this.imagesGridView.AllowUserToDeleteRows = false;
+            this.imagesGridView.AllowUserToResizeRows = false;
+            this.imagesGridView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.imagesGridView.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.imagesGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.imagesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.imagesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -247,9 +219,9 @@
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.campaignImagesList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.campaignImagesList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.campaignImagesList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imagesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.imagesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.imagesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Image,
             this.Description,
             this.Duration,
@@ -261,14 +233,15 @@
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.campaignImagesList.DefaultCellStyle = dataGridViewCellStyle2;
-            this.campaignImagesList.EnableHeadersVisualStyles = false;
-            this.campaignImagesList.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            this.campaignImagesList.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.campaignImagesList.Location = new System.Drawing.Point(359, 99);
-            this.campaignImagesList.Name = "campaignImagesList";
-            this.campaignImagesList.ReadOnly = true;
-            this.campaignImagesList.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.imagesGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            this.imagesGridView.EnableHeadersVisualStyles = false;
+            this.imagesGridView.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            this.imagesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.imagesGridView.Location = new System.Drawing.Point(359, 99);
+            this.imagesGridView.MultiSelect = false;
+            this.imagesGridView.Name = "imagesGridView";
+            this.imagesGridView.ReadOnly = true;
+            this.imagesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
@@ -276,17 +249,27 @@
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.campaignImagesList.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
-            this.campaignImagesList.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.campaignImagesList.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.campaignImagesList.Size = new System.Drawing.Size(557, 223);
-            this.campaignImagesList.TabIndex = 14;
+            this.imagesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            this.imagesGridView.RowHeadersVisible = false;
+            this.imagesGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10);
+            this.imagesGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            this.imagesGridView.RowTemplate.Height = 150;
+            this.imagesGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.imagesGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.imagesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.imagesGridView.Size = new System.Drawing.Size(557, 301);
+            this.imagesGridView.TabIndex = 14;
+            this.imagesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.imagesGridView_CellContentClick);
             // 
             // Image
             // 
             this.Image.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Image.DataPropertyName = "Bytes";
+            this.Image.FillWeight = 1F;
             this.Image.HeaderText = "Imagen";
+            this.Image.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.Image.MinimumWidth = 250;
             this.Image.Name = "Image";
             this.Image.ReadOnly = true;
             this.Image.Resizable = System.Windows.Forms.DataGridViewTriState.True;
@@ -294,35 +277,329 @@
             // 
             // Description
             // 
+            this.Description.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Description.DataPropertyName = "Description";
+            this.Description.FillWeight = 1F;
             this.Description.HeaderText = "Descripcion";
             this.Description.Name = "Description";
             this.Description.ReadOnly = true;
             // 
             // Duration
             // 
+            this.Duration.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Duration.DataPropertyName = "Duration";
+            this.Duration.FillWeight = 1F;
             this.Duration.HeaderText = "Duracion";
             this.Duration.Name = "Duration";
             this.Duration.ReadOnly = true;
             // 
             // Order
             // 
+            this.Order.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.Order.DataPropertyName = "Order";
+            this.Order.FillWeight = 1F;
             this.Order.HeaderText = "Orden";
             this.Order.Name = "Order";
             this.Order.ReadOnly = true;
+            // 
+            // initTimeLabel
+            // 
+            this.initTimeLabel.AutoSize = true;
+            this.initTimeLabel.Location = new System.Drawing.Point(28, 274);
+            this.initTimeLabel.Name = "initTimeLabel";
+            this.initTimeLabel.Size = new System.Drawing.Size(91, 19);
+            this.initTimeLabel.TabIndex = 8;
+            this.initTimeLabel.Text = "Hora de inicio";
+            // 
+            // initTimeHours
+            // 
+            this.initTimeHours.FormattingEnabled = true;
+            this.initTimeHours.ItemHeight = 23;
+            this.initTimeHours.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.initTimeHours.Location = new System.Drawing.Point(23, 296);
+            this.initTimeHours.Name = "initTimeHours";
+            this.initTimeHours.Size = new System.Drawing.Size(77, 29);
+            this.initTimeHours.TabIndex = 15;
+            this.initTimeHours.UseSelectable = true;
+            // 
+            // initTimeMinutes
+            // 
+            this.initTimeMinutes.FormattingEnabled = true;
+            this.initTimeMinutes.ItemHeight = 23;
+            this.initTimeMinutes.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59"});
+            this.initTimeMinutes.Location = new System.Drawing.Point(152, 296);
+            this.initTimeMinutes.Name = "initTimeMinutes";
+            this.initTimeMinutes.Size = new System.Drawing.Size(77, 29);
+            this.initTimeMinutes.TabIndex = 16;
+            this.initTimeMinutes.UseSelectable = true;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(120, 306);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(12, 19);
+            this.metroLabel2.TabIndex = 17;
+            this.metroLabel2.Text = ":";
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(120, 371);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(12, 19);
+            this.metroLabel3.TabIndex = 21;
+            this.metroLabel3.Text = ":";
+            // 
+            // endTimeMinutes
+            // 
+            this.endTimeMinutes.FormattingEnabled = true;
+            this.endTimeMinutes.ItemHeight = 23;
+            this.endTimeMinutes.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24",
+            "25",
+            "26",
+            "27",
+            "28",
+            "29",
+            "30",
+            "31",
+            "32",
+            "33",
+            "34",
+            "35",
+            "36",
+            "37",
+            "38",
+            "39",
+            "40",
+            "41",
+            "42",
+            "43",
+            "44",
+            "45",
+            "46",
+            "47",
+            "48",
+            "49",
+            "50",
+            "51",
+            "52",
+            "53",
+            "54",
+            "55",
+            "56",
+            "57",
+            "58",
+            "59"});
+            this.endTimeMinutes.Location = new System.Drawing.Point(152, 361);
+            this.endTimeMinutes.Name = "endTimeMinutes";
+            this.endTimeMinutes.Size = new System.Drawing.Size(77, 29);
+            this.endTimeMinutes.TabIndex = 20;
+            this.endTimeMinutes.UseSelectable = true;
+            // 
+            // endTimeHours
+            // 
+            this.endTimeHours.FormattingEnabled = true;
+            this.endTimeHours.ItemHeight = 23;
+            this.endTimeHours.Items.AddRange(new object[] {
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10",
+            "11",
+            "12",
+            "13",
+            "14",
+            "15",
+            "16",
+            "17",
+            "18",
+            "19",
+            "20",
+            "21",
+            "22",
+            "23",
+            "24"});
+            this.endTimeHours.Location = new System.Drawing.Point(23, 361);
+            this.endTimeHours.Name = "endTimeHours";
+            this.endTimeHours.Size = new System.Drawing.Size(77, 29);
+            this.endTimeHours.TabIndex = 19;
+            this.endTimeHours.UseSelectable = true;
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.AutoSize = true;
+            this.metroLabel4.Location = new System.Drawing.Point(28, 339);
+            this.metroLabel4.Name = "metroLabel4";
+            this.metroLabel4.Size = new System.Drawing.Size(75, 19);
+            this.metroLabel4.TabIndex = 18;
+            this.metroLabel4.Text = "Hora de fin";
+            // 
+            // addImageButton
+            // 
+            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.addImageButton.Location = new System.Drawing.Point(359, 406);
+            this.addImageButton.Name = "addImageButton";
+            this.addImageButton.Size = new System.Drawing.Size(557, 23);
+            this.addImageButton.TabIndex = 22;
+            this.addImageButton.Text = "+ agregar imagen";
+            this.addImageButton.UseSelectable = true;
+            this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.exitButton.Location = new System.Drawing.Point(278, 463);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(146, 49);
+            this.exitButton.TabIndex = 23;
+            this.exitButton.Text = "salir";
+            this.exitButton.UseSelectable = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // saveButton
+            // 
+            this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.saveButton.Location = new System.Drawing.Point(483, 463);
+            this.saveButton.Name = "saveButton";
+            this.saveButton.Size = new System.Drawing.Size(146, 49);
+            this.saveButton.TabIndex = 24;
+            this.saveButton.Text = "guardar cambios";
+            this.saveButton.UseSelectable = true;
             // 
             // CampaignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(939, 547);
-            this.Controls.Add(this.campaignImagesList);
+            this.Controls.Add(this.saveButton);
+            this.Controls.Add(this.exitButton);
+            this.Controls.Add(this.addImageButton);
+            this.Controls.Add(this.metroLabel3);
+            this.Controls.Add(this.endTimeMinutes);
+            this.Controls.Add(this.endTimeHours);
+            this.Controls.Add(this.metroLabel4);
+            this.Controls.Add(this.metroLabel2);
+            this.Controls.Add(this.initTimeMinutes);
+            this.Controls.Add(this.initTimeHours);
+            this.Controls.Add(this.imagesGridView);
             this.Controls.Add(this.metroLabel1);
-            this.Controls.Add(this.endTimePicker);
-            this.Controls.Add(this.endTimeLabel);
-            this.Controls.Add(this.initTimePicker);
             this.Controls.Add(this.initTimeLabel);
             this.Controls.Add(this.endDatePicker);
             this.Controls.Add(this.endDateLabel);
@@ -334,8 +611,7 @@
             this.Controls.Add(this.nameLabel);
             this.Name = "CampaignForm";
             this.Text = "Formulario de camapaña";
-            this.Load += new System.EventHandler(this.CampaignForm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.campaignImagesList)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.imagesGridView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -351,16 +627,23 @@
         private MetroFramework.Controls.MetroDateTime initDatePicker;
         private MetroFramework.Controls.MetroLabel endDateLabel;
         private MetroFramework.Controls.MetroDateTime endDatePicker;
-        private MetroFramework.Controls.MetroLabel initTimeLabel;
-        private MetroFramework.Controls.MetroDateTime initTimePicker;
-        private MetroFramework.Controls.MetroDateTime endTimePicker;
-        private MetroFramework.Controls.MetroLabel endTimeLabel;
         private System.Windows.Forms.ImageList campignImages;
         private MetroFramework.Controls.MetroLabel metroLabel1;
-        private MetroFramework.Controls.MetroGrid campaignImagesList;
+        private MetroFramework.Controls.MetroGrid imagesGridView;
         private System.Windows.Forms.DataGridViewImageColumn Image;
         private System.Windows.Forms.DataGridViewTextBoxColumn Description;
         private System.Windows.Forms.DataGridViewTextBoxColumn Duration;
         private System.Windows.Forms.DataGridViewTextBoxColumn Order;
+        private MetroFramework.Controls.MetroLabel initTimeLabel;
+        private MetroFramework.Controls.MetroComboBox initTimeHours;
+        private MetroFramework.Controls.MetroComboBox initTimeMinutes;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroComboBox endTimeMinutes;
+        private MetroFramework.Controls.MetroComboBox endTimeHours;
+        private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroButton addImageButton;
+        private MetroFramework.Controls.MetroButton exitButton;
+        private MetroFramework.Controls.MetroButton saveButton;
     }
 }

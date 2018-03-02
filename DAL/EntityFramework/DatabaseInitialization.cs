@@ -21,8 +21,8 @@ namespace DAL.EntityFramework
                 Description = "Desc1",
                 InitDate = new DateTime(2018, 2, 1),
                 EndDate = new DateTime(2018, 2, 10),
-                InitTime = new TimeSpan(),
-                EndTime = new TimeSpan(1),
+                InitTime = new TimeSpan(0,8,0,0,0),
+                EndTime = new TimeSpan(0,12,0,0,0),
                 Images = new List<Image> {
                     new Image()
                     {

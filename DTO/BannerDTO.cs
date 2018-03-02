@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-
+    [Serializable]
     /// <summary>
     /// DTO para la clase banner
     /// </summary>

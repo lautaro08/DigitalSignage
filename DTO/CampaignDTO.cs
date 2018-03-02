@@ -5,6 +5,7 @@ using Domain;
 namespace DTO
 {
 
+    [Serializable]
     /// <summary>
     /// DTO para la clase Capaign
     /// </summary>

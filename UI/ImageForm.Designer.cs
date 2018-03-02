@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ImageForm));
             this.picureBox = new System.Windows.Forms.PictureBox();
             this.openImageButton = new MetroFramework.Controls.MetroButton();
@@ -39,7 +40,9 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.durationTextBox = new MetroFramework.Controls.MetroTextBox();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.picureBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // picureBox
@@ -54,6 +57,7 @@
             this.picureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picureBox.TabIndex = 0;
             this.picureBox.TabStop = false;
+            this.picureBox.Validating += new System.ComponentModel.CancelEventHandler(this.picureBox_Validating);
             // 
             // openImageButton
             // 
@@ -121,6 +125,7 @@
             this.descriptionTextBox.UseSelectable = true;
             this.descriptionTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.descriptionTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.descriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.descriptionTextBox_Validating);
             // 
             // orderComboBox
             // 
@@ -132,9 +137,11 @@
             this.orderComboBox.Size = new System.Drawing.Size(121, 29);
             this.orderComboBox.TabIndex = 8;
             this.orderComboBox.UseSelectable = true;
+            this.orderComboBox.Validating += new System.ComponentModel.CancelEventHandler(this.orderComboBox_Validating);
             // 
             // nameLabel
             // 
+            this.nameLabel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.nameLabel.AutoSize = true;
             this.nameLabel.Location = new System.Drawing.Point(32, 352);
             this.nameLabel.Name = "nameLabel";
@@ -144,6 +151,7 @@
             // 
             // metroLabel1
             // 
+            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.metroLabel1.AutoSize = true;
             this.metroLabel1.Location = new System.Drawing.Point(32, 406);
             this.metroLabel1.Name = "metroLabel1";
@@ -153,6 +161,7 @@
             // 
             // metroLabel2
             // 
+            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(181, 406);
             this.metroLabel2.Name = "metroLabel2";
@@ -162,6 +171,7 @@
             // 
             // durationTextBox
             // 
+            this.durationTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // 
             // 
@@ -189,11 +199,17 @@
             this.durationTextBox.UseSelectable = true;
             this.durationTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.durationTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.durationTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.durationTextBox_Validating);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // ImageForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(524, 547);
             this.Controls.Add(this.durationTextBox);
             this.Controls.Add(this.metroLabel2);
@@ -208,6 +224,7 @@
             this.Name = "ImageForm";
             this.Text = "ImageForm";
             ((System.ComponentModel.ISupportInitialize)(this.picureBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -225,5 +242,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroTextBox durationTextBox;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

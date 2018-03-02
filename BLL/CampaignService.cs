@@ -104,18 +104,7 @@ namespace BLL
             {
                 //campaña anterior
                 log.Info("Actualizando campaña");
-                var oldCampaign = iUnitOfWork.CampaignRepository.Get(campaign.Id);
-
-                //actualizando campos
-                oldCampaign.Name = campaign.Name;
-                oldCampaign.Description = campaign.Description;
-                oldCampaign.InitDate = campaign.InitDate;
-                oldCampaign.EndDate = campaign.EndDate;
-                oldCampaign.InitTime = campaign.InitTime;
-                oldCampaign.EndTime = campaign.EndTime;
-
-                if (oldCampaign.Images != null) { oldCampaign.Images.Clear(); }
-                oldCampaign.Images = campaign.Images;
+                iUnitOfWork.CampaignRepository.Update(campaign);
 
                 //Guardando los cambios
                 iUnitOfWork.Complete();

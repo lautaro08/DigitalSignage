@@ -9,7 +9,7 @@ namespace DAL
     public interface ICampaignRepository : IRepository<Campaign>
     {
 
-
+        void Update(Campaign updatedCampaign);
 
     }
 }

@@ -1,4 +1,5 @@
 ﻿using DTO;
+using MetroFramework;
 using MetroFramework.Forms;
 using System;
 using System.Collections.Generic;
@@ -95,9 +96,75 @@ namespace UI
         private void saveImageButton_Click(object sender, EventArgs e)
         {
 
-            updateImageFromView();
-            DialogResult = DialogResult.OK;
-            Close();
+            if (ValidateChildren(ValidationConstraints.Enabled))
+            {
+
+                try
+                {
+                    updateImageFromView();
+                    DialogResult = DialogResult.OK;
+                    Close();
+                }
+                catch (Exception)
+                {
+                    MetroMessageBox.Show(this, "Ha ocurrido un error con los datos de la imagen, por favor intente cargarla nuevamente", "Error al guardar la imagen", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                
+
+            }
+
+        }
+
+        private void descriptionTextBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            if(string.IsNullOrEmpty(descriptionTextBox.Text))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(descriptionTextBox, "La descripcion de la imagen es obligatoria.");
+                return;
+            }
+            errorProvider1.SetError(descriptionTextBox, null);
+
+        }
+
+        private void picureBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (picureBox == null || picureBox.Image == null)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(picureBox, "Debe seleccionar una imagen.");
+                return;
+            }
+            errorProvider1.SetError(picureBox, null);
+
+        }
+
+        private void orderComboBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (orderComboBox.SelectedIndex == -1)
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(orderComboBox, "Debe seleccionar un orden de aparicion para la imagen.");
+                return;
+            }
+            errorProvider1.SetError(orderComboBox, null);
+
+        }
+
+        private void durationTextBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            int intObj;
+            if (!Int32.TryParse(durationTextBox.Text, out intObj))
+            {
+                e.Cancel = true;
+                errorProvider1.SetError(durationTextBox, "Debe ingresar un numero entero");
+                return;
+            }
+            errorProvider1.SetError(durationTextBox, null);
 
         }
     }

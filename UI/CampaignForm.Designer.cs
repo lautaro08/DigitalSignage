@@ -30,10 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CampaignForm));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nameLabel = new MetroFramework.Controls.MetroLabel();
             this.nameTextBox = new MetroFramework.Controls.MetroTextBox();
             this.descriptionLabel = new MetroFramework.Controls.MetroLabel();
@@ -60,7 +60,11 @@
             this.addImageButton = new MetroFramework.Controls.MetroButton();
             this.exitButton = new MetroFramework.Controls.MetroButton();
             this.saveButton = new MetroFramework.Controls.MetroButton();
+            this.deleteImageButton = new MetroFramework.Controls.MetroButton();
+            this.modifyImageButton = new MetroFramework.Controls.MetroButton();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.imagesGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // nameLabel
@@ -101,6 +105,7 @@
             this.nameTextBox.UseSelectable = true;
             this.nameTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.nameTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.nameTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.nameTextBox_Validating);
             // 
             // descriptionLabel
             // 
@@ -142,6 +147,7 @@
             this.descriptionTextBox.UseSelectable = true;
             this.descriptionTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.descriptionTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.descriptionTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.descriptionTextBox_Validating);
             // 
             // initDateLabel
             // 
@@ -160,6 +166,7 @@
             this.initDatePicker.Name = "initDatePicker";
             this.initDatePicker.Size = new System.Drawing.Size(96, 29);
             this.initDatePicker.TabIndex = 5;
+            this.initDatePicker.Validating += new System.ComponentModel.CancelEventHandler(this.initDatePicker_Validating);
             // 
             // endDateLabel
             // 
@@ -178,6 +185,7 @@
             this.endDatePicker.Name = "endDatePicker";
             this.endDatePicker.Size = new System.Drawing.Size(96, 29);
             this.endDatePicker.TabIndex = 7;
+            this.endDatePicker.Validating += new System.ComponentModel.CancelEventHandler(this.endDatePicker_Validating);
             // 
             // campignImages
             // 
@@ -212,28 +220,28 @@
             this.imagesGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.imagesGridView.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
             this.imagesGridView.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.imagesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.imagesGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.imagesGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.imagesGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Image,
             this.Description,
             this.Duration,
             this.Order});
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.imagesGridView.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(136)))), ((int)(((byte)(136)))), ((int)(((byte)(136)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.imagesGridView.DefaultCellStyle = dataGridViewCellStyle6;
             this.imagesGridView.EnableHeadersVisualStyles = false;
             this.imagesGridView.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
             this.imagesGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
@@ -242,25 +250,25 @@
             this.imagesGridView.Name = "imagesGridView";
             this.imagesGridView.ReadOnly = true;
             this.imagesGridView.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.imagesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(174)))), ((int)(((byte)(219)))));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Pixel);
+            dataGridViewCellStyle7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(198)))), ((int)(((byte)(247)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(17)))), ((int)(((byte)(17)))), ((int)(((byte)(17)))));
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.imagesGridView.RowHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.imagesGridView.RowHeadersVisible = false;
             this.imagesGridView.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle4.Padding = new System.Windows.Forms.Padding(10);
-            this.imagesGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle8.Padding = new System.Windows.Forms.Padding(10);
+            this.imagesGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
             this.imagesGridView.RowTemplate.Height = 150;
             this.imagesGridView.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.imagesGridView.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.imagesGridView.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.imagesGridView.Size = new System.Drawing.Size(557, 301);
             this.imagesGridView.TabIndex = 14;
-            this.imagesGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.imagesGridView_CellContentClick);
+            this.imagesGridView.Validating += new System.ComponentModel.CancelEventHandler(this.imagesGridView_Validating);
             // 
             // Image
             // 
@@ -346,9 +354,12 @@
             this.initTimeHours.Size = new System.Drawing.Size(77, 29);
             this.initTimeHours.TabIndex = 15;
             this.initTimeHours.UseSelectable = true;
+            this.initTimeHours.SelectedValueChanged += new System.EventHandler(this.initTimeHours_SelectedValueChanged);
+            this.initTimeHours.Validating += new System.ComponentModel.CancelEventHandler(this.initTimeHours_Validating);
             // 
             // initTimeMinutes
             // 
+            this.initTimeMinutes.Enabled = false;
             this.initTimeMinutes.FormattingEnabled = true;
             this.initTimeMinutes.ItemHeight = 23;
             this.initTimeMinutes.Items.AddRange(new object[] {
@@ -416,6 +427,8 @@
             this.initTimeMinutes.Size = new System.Drawing.Size(77, 29);
             this.initTimeMinutes.TabIndex = 16;
             this.initTimeMinutes.UseSelectable = true;
+            this.initTimeMinutes.SelectedValueChanged += new System.EventHandler(this.initTimeMinutes_SelectedValueChanged);
+            this.initTimeMinutes.Validating += new System.ComponentModel.CancelEventHandler(this.initTimeMinutes_Validating);
             // 
             // metroLabel2
             // 
@@ -437,6 +450,7 @@
             // 
             // endTimeMinutes
             // 
+            this.endTimeMinutes.Enabled = false;
             this.endTimeMinutes.FormattingEnabled = true;
             this.endTimeMinutes.ItemHeight = 23;
             this.endTimeMinutes.Items.AddRange(new object[] {
@@ -504,9 +518,11 @@
             this.endTimeMinutes.Size = new System.Drawing.Size(77, 29);
             this.endTimeMinutes.TabIndex = 20;
             this.endTimeMinutes.UseSelectable = true;
+            this.endTimeMinutes.Validating += new System.ComponentModel.CancelEventHandler(this.endTimeMinutes_Validating);
             // 
             // endTimeHours
             // 
+            this.endTimeHours.Enabled = false;
             this.endTimeHours.FormattingEnabled = true;
             this.endTimeHours.ItemHeight = 23;
             this.endTimeHours.Items.AddRange(new object[] {
@@ -540,6 +556,8 @@
             this.endTimeHours.Size = new System.Drawing.Size(77, 29);
             this.endTimeHours.TabIndex = 19;
             this.endTimeHours.UseSelectable = true;
+            this.endTimeHours.SelectedValueChanged += new System.EventHandler(this.endTimeHours_SelectedValueChanged);
+            this.endTimeHours.Validating += new System.ComponentModel.CancelEventHandler(this.endTimeHours_Validating);
             // 
             // metroLabel4
             // 
@@ -552,14 +570,16 @@
             // 
             // addImageButton
             // 
-            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.addImageButton.Location = new System.Drawing.Point(359, 406);
+            this.addImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.addImageButton.BackColor = System.Drawing.Color.LightGreen;
+            this.addImageButton.Location = new System.Drawing.Point(735, 406);
             this.addImageButton.Name = "addImageButton";
-            this.addImageButton.Size = new System.Drawing.Size(557, 23);
+            this.addImageButton.Size = new System.Drawing.Size(181, 23);
+            this.addImageButton.Style = MetroFramework.MetroColorStyle.Green;
             this.addImageButton.TabIndex = 22;
-            this.addImageButton.Text = "+ agregar imagen";
+            this.addImageButton.Text = "agregar imagen";
             this.addImageButton.UseSelectable = true;
+            this.addImageButton.UseStyleColors = true;
             this.addImageButton.Click += new System.EventHandler(this.addImageButton_Click);
             // 
             // exitButton
@@ -582,12 +602,48 @@
             this.saveButton.TabIndex = 24;
             this.saveButton.Text = "guardar cambios";
             this.saveButton.UseSelectable = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
+            // 
+            // deleteImageButton
+            // 
+            this.deleteImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.deleteImageButton.BackColor = System.Drawing.Color.Tomato;
+            this.deleteImageButton.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.deleteImageButton.Cursor = System.Windows.Forms.Cursors.Default;
+            this.deleteImageButton.Location = new System.Drawing.Point(359, 406);
+            this.deleteImageButton.Name = "deleteImageButton";
+            this.deleteImageButton.Size = new System.Drawing.Size(191, 23);
+            this.deleteImageButton.Style = MetroFramework.MetroColorStyle.Red;
+            this.deleteImageButton.TabIndex = 25;
+            this.deleteImageButton.Text = "eliminar imagen";
+            this.deleteImageButton.UseSelectable = true;
+            this.deleteImageButton.UseStyleColors = true;
+            this.deleteImageButton.Click += new System.EventHandler(this.deleteImageButton_Click);
+            // 
+            // modifyImageButton
+            // 
+            this.modifyImageButton.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.modifyImageButton.Location = new System.Drawing.Point(549, 406);
+            this.modifyImageButton.Name = "modifyImageButton";
+            this.modifyImageButton.Size = new System.Drawing.Size(187, 23);
+            this.modifyImageButton.TabIndex = 26;
+            this.modifyImageButton.Text = "modificar imagen";
+            this.modifyImageButton.UseSelectable = true;
+            this.modifyImageButton.Click += new System.EventHandler(this.modifyImageButton_Click);
+            // 
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
             // 
             // CampaignForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(939, 547);
+            this.Controls.Add(this.modifyImageButton);
+            this.Controls.Add(this.deleteImageButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.exitButton);
             this.Controls.Add(this.addImageButton);
@@ -612,6 +668,7 @@
             this.Name = "CampaignForm";
             this.Text = "Formulario de camapaña";
             ((System.ComponentModel.ISupportInitialize)(this.imagesGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -645,5 +702,8 @@
         private MetroFramework.Controls.MetroButton addImageButton;
         private MetroFramework.Controls.MetroButton exitButton;
         private MetroFramework.Controls.MetroButton saveButton;
+        private MetroFramework.Controls.MetroButton deleteImageButton;
+        private MetroFramework.Controls.MetroButton modifyImageButton;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

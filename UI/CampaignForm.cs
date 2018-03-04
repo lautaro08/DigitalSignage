@@ -14,10 +14,14 @@ using System.Windows.Forms;
 
 namespace UI
 {
+
+    /// <summary>
+    /// Pantalla para la carga de una camapaña
+    /// </summary>
     public partial class CampaignForm : MetroForm
 
     {
-
+        //variable de instancia que contiene la campaña que se carga en el formulario
         public CampaignDTO iCampaignModel;
 
         public CampaignForm(CampaignDTO pCampaign)
@@ -41,50 +45,17 @@ namespace UI
             
         }
 
-        private void loadCampaignInView()
-        {
-            nameTextBox.Text = iCampaignModel.Name;
-            descriptionTextBox.Text = iCampaignModel.Description;
-            initDatePicker.Value = iCampaignModel.InitDate;
-            endDatePicker.Value = iCampaignModel.EndDate;
-            initTimeHours.SelectedIndex = iCampaignModel.InitTime.Hours;
-            initTimeMinutes.SelectedIndex = iCampaignModel.InitTime.Minutes;
-            endTimeHours.SelectedIndex = iCampaignModel.EndTime.Hours;
-            endTimeMinutes.SelectedIndex = iCampaignModel.EndTime.Minutes;
-            refreshImagesGridView();
-           
-        }
 
-        private void updateCampaignFromView()
-        {
-            iCampaignModel.Name = nameTextBox.Text;
-            iCampaignModel.Description = descriptionTextBox.Text;
-            iCampaignModel.InitDate = initDatePicker.Value;
-            iCampaignModel.EndDate = endDatePicker.Value;
-
-            int hours = int.Parse(initTimeHours.SelectedItem.ToString());
-            int minutes = int.Parse(initTimeMinutes.SelectedItem.ToString());
-            iCampaignModel.InitTime = new TimeSpan(hours, minutes, 0);
-
-            hours = int.Parse(endTimeHours.SelectedItem.ToString());
-            minutes = int.Parse(endTimeMinutes.SelectedItem.ToString());
-            iCampaignModel.EndTime = new TimeSpan(hours, minutes, 0);
-
-        }
-
-        private void refreshImagesGridView()
-        {
-
-            iCampaignModel.Images = iCampaignModel.Images.OrderBy(i => i.Order).ToList();
-            imagesGridView.DataSource = iCampaignModel.Images;
-            imagesGridView.Update();
-
-        }
+        /*
+         
+          -----> BUTTONS CLICK <-----
+              
+        */
 
         private void exitButton_Click(object sender, EventArgs e)
         {
 
-            if (MetroMessageBox.Show(this, "si sale perdera todos los cambios realizados", "Esta seguro de salir del formulario?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            if (MetroMessageBox.Show(this, "si sale perdera todos los cambios realizados", "Esta seguro de salir del formulario?", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
             {
 
                 Close();
@@ -92,40 +63,6 @@ namespace UI
             }
 
             
-        }
-
-        private void addImageButton_Click(object sender, EventArgs e)
-        {
-            var imageForm = new ImageForm(null, getImageListLength());
-            StyleManager.Clone(imageForm);
-
-            if (imageForm.ShowDialog(this) == DialogResult.OK)
-            {
-
-                var newImage = imageForm.iImageModel;
-                var lastIndex = 1 + getImageListLength();
-
-                //checkear que no ocupe el orden que ya tenia otra imagen
-                if (newImage.Order != lastIndex)
-                {
-
-                    var solapedImage = iCampaignModel.Images.Where(image => image.Order == newImage.Order).First();
-                    solapedImage.Order = lastIndex;
-
-                }
-
-                iCampaignModel.Images.Add(imageForm.iImageModel);
-                refreshImagesGridView();
-
-            }
-            
-        }
-
-        private int getImageListLength()
-        {
-
-            return iCampaignModel.Images != null ? iCampaignModel.Images.Count : 0;
-
         }
 
         private void modifyImageButton_Click(object sender, EventArgs e)
@@ -164,6 +101,33 @@ namespace UI
 
         }
 
+        private void addImageButton_Click(object sender, EventArgs e)
+        {
+            var imageForm = new ImageForm(null, getImageListLength());
+            StyleManager.Clone(imageForm);
+
+            if (imageForm.ShowDialog(this) == DialogResult.OK)
+            {
+
+                var newImage = imageForm.iImageModel;
+                var lastIndex = 1 + getImageListLength();
+
+                //checkear que no ocupe el orden que ya tenia otra imagen
+                if (newImage.Order != lastIndex)
+                {
+
+                    var solapedImage = iCampaignModel.Images.Where(image => image.Order == newImage.Order).First();
+                    solapedImage.Order = lastIndex;
+
+                }
+
+                iCampaignModel.Images.Add(imageForm.iImageModel);
+                refreshImagesGridView();
+
+            }
+            
+        }
+
         private void deleteImageButton_Click(object sender, EventArgs e)
         {
             if (imagesGridView.SelectedRows.Count == 0)
@@ -200,6 +164,81 @@ namespace UI
             }
           
         }
+
+        /*
+         
+          -----> VALUE CHANGES <-----
+              
+        */
+
+        private void initTimeHours_SelectedValueChanged(object sender, EventArgs e)
+        {
+            //primero debe cargar las horas
+            initTimeMinutes.Enabled = true;
+        }
+
+        private void initTimeMinutes_SelectedValueChanged(object sender, EventArgs e)
+        {
+            endTimeHours.Enabled = true;
+        }
+
+        private void endTimeHours_SelectedValueChanged(object sender, EventArgs e)
+        {
+            endTimeMinutes.Enabled = true;
+        }
+
+        private void refreshImagesGridView()
+        {
+
+            iCampaignModel.Images = iCampaignModel.Images.OrderBy(i => i.Order).ToList();
+            imagesGridView.DataSource = iCampaignModel.Images;
+            imagesGridView.Update();
+
+        }
+
+        private void loadCampaignInView()
+        {
+            nameTextBox.Text = iCampaignModel.Name;
+            descriptionTextBox.Text = iCampaignModel.Description;
+            initDatePicker.Value = iCampaignModel.InitDate;
+            endDatePicker.Value = iCampaignModel.EndDate;
+            initTimeHours.SelectedIndex = iCampaignModel.InitTime.Hours;
+            initTimeMinutes.SelectedIndex = iCampaignModel.InitTime.Minutes;
+            endTimeHours.SelectedIndex = iCampaignModel.EndTime.Hours;
+            endTimeMinutes.SelectedIndex = iCampaignModel.EndTime.Minutes;
+            refreshImagesGridView();
+           
+        }
+
+        private void updateCampaignFromView()
+        {
+            iCampaignModel.Name = nameTextBox.Text;
+            iCampaignModel.Description = descriptionTextBox.Text;
+            iCampaignModel.InitDate = initDatePicker.Value;
+            iCampaignModel.EndDate = endDatePicker.Value;
+
+            int hours = int.Parse(initTimeHours.SelectedItem.ToString());
+            int minutes = int.Parse(initTimeMinutes.SelectedItem.ToString());
+            iCampaignModel.InitTime = new TimeSpan(hours, minutes, 0);
+
+            hours = int.Parse(endTimeHours.SelectedItem.ToString());
+            minutes = int.Parse(endTimeMinutes.SelectedItem.ToString());
+            iCampaignModel.EndTime = new TimeSpan(hours, minutes, 0);
+
+        }
+
+        private int getImageListLength()
+        {
+
+            return iCampaignModel.Images != null ? iCampaignModel.Images.Count : 0;
+
+        }
+        
+        /*
+         
+          -----> VALIDATIONS <-----
+              
+        */
 
         private void nameTextBox_Validating(object sender, CancelEventArgs e)
         {
@@ -311,6 +350,16 @@ namespace UI
             errorProvider1.SetError(initTimeMinutes, null);
         }
 
+        /*
+         
+          -----> AUX FUNCTIONS <-----
+              
+        */
+
+        /// <summary>
+        /// checkea si la hora de inicio se encuentra despues de la de fin, en cuyo caso devuelve verdadero
+        /// </summary>
+        /// <returns></returns>
         private bool initTimeIsAfterEndTime()
         {
             int hours = int.Parse(initTimeHours.SelectedItem.ToString());
@@ -324,25 +373,14 @@ namespace UI
             return initTimespan.CompareTo(endTimespan) > 0;
         }
 
+        /// <summary>
+        /// checkea si la hora de inicio se encuentra despues de la de fin, en cuyo caso devuelve verdadero
+        /// </summary>
+        /// <returns></returns>
         private bool initDateIsAfterEndDate()
         {
             return initDatePicker.Value.CompareTo(endDatePicker.Value) > 0;
         }
 
-        private void initTimeHours_SelectedValueChanged(object sender, EventArgs e)
-        {
-            //primero debe cargar las horas
-            initTimeMinutes.Enabled = true;
-        }
-
-        private void initTimeMinutes_SelectedValueChanged(object sender, EventArgs e)
-        {
-            endTimeHours.Enabled = true;
-        }
-
-        private void endTimeHours_SelectedValueChanged(object sender, EventArgs e)
-        {
-            endTimeMinutes.Enabled = true;
-        }
     }
 }

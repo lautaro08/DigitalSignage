@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using Domain;
+using System.Data.Entity.Core.Objects;
 
 namespace DAL.EntityFramework
 {
@@ -17,27 +18,38 @@ namespace DAL.EntityFramework
         {
         }
 
-        /// <summary>
-        /// Obtiene la campaña por Id
-        /// </summary>
-        /// <param name="pId">Identificador de la camapaña</param>
-        /// <returns>Entidad</returns>
-        public virtual Campaign Get(int pId)
+        public override Campaign Get(int pId)
         {
+            //incluye las entidades Imagenes relacionadas en la respuesta
             return base.iDbContext.Set<Campaign>().Include("Images").Where(c => c.Id == pId).FirstOrDefault();
         }
 
-        /// <summary>
-        /// Obtiene todas las entidades
-        /// </summary>
-        /// <returns>Coleccion de entidades</returns>
-        public virtual IEnumerable<Campaign> GetAll()
+        public override IEnumerable<Campaign> GetAll()
         {
+            //incluye las entidades Imagenes relacionadas en la respuesta
             return this.iDbContext.Set<Campaign>().Include("Images").ToList();
+        }
+
+        public IEnumerable<Campaign> GetCampaignsActiveInDate(DateTime pDate)
+        {
+            return base.iDbContext.Set<Campaign>()
+                .Include("Images")
+                .Where(c => EntityFunctions.TruncateTime(c.InitDate) <= EntityFunctions.TruncateTime(pDate))
+                .Where(c => EntityFunctions.TruncateTime(c.EndDate) >= EntityFunctions.TruncateTime(pDate))
+                .ToList();
+        }
+
+        public IEnumerable<Campaign> GetCampaignsByName(string pName)
+        {
+            return base.iDbContext.Set<Campaign>()
+                .Include("Images")
+                .Where(c => c.Name.IndexOf(pName) >= 0)
+                .ToList();
         }
 
         public void Update(Campaign updatedCampaign)
         {
+            //verifica y actualiza el estados de las entidades Imagenes relacionadas con la campaña
             var oldCampaign = this.iDbContext.Campaigns
                 .Include("Images")
                 .Where(p => p.Id == updatedCampaign.Id)

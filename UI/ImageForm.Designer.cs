@@ -222,7 +222,7 @@
             this.Controls.Add(this.openImageButton);
             this.Controls.Add(this.picureBox);
             this.Name = "ImageForm";
-            this.Text = "ImageForm";
+            this.Text = "Formulario de imagen";
             ((System.ComponentModel.ISupportInitialize)(this.picureBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

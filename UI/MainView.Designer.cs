@@ -244,6 +244,7 @@
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "MainView";
             this.Text = "Digital Signage";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.msmMain)).EndInit();
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();

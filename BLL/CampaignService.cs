@@ -179,5 +179,64 @@ namespace BLL
 
         }
 
+        /// <summary>
+        /// Obtiene todas las camapañas activas en un dia determinado
+        /// </summary>
+        /// <param name="pDate"></param>
+        /// <returns></returns>
+        public IEnumerable<CampaignDTO> GetCampaignsActiveInDate(DateTime pDate)
+        {
+
+            try
+            {
+
+                log.Info("Obteniendo todas las campañas activas en la fecha " + pDate.ToString());
+                IEnumerable<Campaign> campaigns = iUnitOfWork.CampaignRepository.GetCampaignsActiveInDate(pDate);
+                log.Info("Campañas obtenidas con exito");
+
+                var campaignsDTO = AutoMapper.Mapper.Map<IEnumerable<Campaign>, IEnumerable<CampaignDTO>>(campaigns);
+
+                return campaignsDTO;
+
+            }
+            catch (Exception e)
+            {
+
+                log.Error("Error al obtener campañas: " + e.Message);
+                throw new Exception();
+
+            }
+
+        }
+
+        /// <summary>
+        /// Obtiene todas las camapañas cuyo nombre coincida por aproximacion al dado en el parametro
+        /// </summary>
+        /// <param name="pDate"></param>
+        /// <returns></returns>
+        public IEnumerable<CampaignDTO> GetCampaignsByName(string pName)
+        {
+
+            try
+            {
+
+                log.Info("Obteniendo todas las campañas que coincidan con el nombre " + pName);
+                IEnumerable<Campaign> campaigns = iUnitOfWork.CampaignRepository.GetCampaignsByName(pName);
+                log.Info("Campañas obtenidas con exito");
+
+                var campaignsDTO = AutoMapper.Mapper.Map<IEnumerable<Campaign>, IEnumerable<CampaignDTO>>(campaigns);
+
+                return campaignsDTO;
+
+            }
+            catch (Exception e)
+            {
+
+                log.Error("Error al obtener campañas: " + e.Message);
+                throw new Exception();
+
+            }
+
+        }
     }
 }

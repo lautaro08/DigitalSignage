@@ -45,5 +45,19 @@ namespace BLL
         /// </summary>
         IEnumerable<CampaignDTO> GetAll();
 
+        /// <summary>
+        /// Obtiene todas las camapañas activas en un dia determinado
+        /// </summary>
+        /// <param name="pDate"></param>
+        /// <returns></returns>
+        IEnumerable<CampaignDTO> GetCampaignsActiveInDate(DateTime pDate);
+
+        /// <summary>
+        /// Obtiene todas las camapañas cuyo nombre coincida por aproximacion al dado en el parametro
+        /// </summary>
+        /// <param name="pDate"></param>
+        /// <returns></returns>
+        IEnumerable<CampaignDTO> GetCampaignsByName(string pName);
+
     }
 }

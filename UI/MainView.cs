@@ -30,6 +30,17 @@ namespace UI
 
         }
 
+        private void openBannerAdmin(object sender, EventArgs e)
+        {
+
+            this.Cursor = Cursors.WaitCursor;
+            var bannerAdmin = new BannerAdmin();
+            this.Cursor = Cursors.Default;
+            this.StyleManager.Clone(bannerAdmin);
+            bannerAdmin.ShowDialog(this);
+
+        }
+
         private void exit(object sender, EventArgs e)
         {
             this.Close();

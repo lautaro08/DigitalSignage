@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DAL.EntityFramework
 {
-    class DatabaseInitialization : CreateDatabaseIfNotExists<DigitalSignageDbContext>
+    class DatabaseInitialization : DropCreateDatabaseIfModelChanges<DigitalSignageDbContext>
     {
 
         protected override void Seed(DigitalSignageDbContext pContext)

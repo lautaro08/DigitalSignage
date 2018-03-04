@@ -29,8 +29,6 @@ namespace DAL.EntityFramework
             this.iDbContext = pContext;
             this.CampaignRepository = new CampaignRepository(this.iDbContext);
             this.BannerRepository = new BannerRepository(this.iDbContext);
-            this.BannerRssRepository = new BannerRssRepository(this.iDbContext);
-            this.BannerTextRepository = new BannerTextRepository(this.iDbContext);
 
         }
 
@@ -46,22 +44,6 @@ namespace DAL.EntityFramework
         /// repositorio de campañas
         /// </summary>
         public ICampaignRepository CampaignRepository
-        {
-            get; private set;
-        }
-
-        /// <summary>
-        /// repositorio de fuentes RSS
-        /// </summary>
-        public IBannerRssRepository BannerRssRepository
-        {
-            get; private set;
-        }
-
-        /// <summary>
-        /// repositorio de fuentes de texto
-        /// </summary>
-        public IBannerTextRepository BannerTextRepository
         {
             get; private set;
         }

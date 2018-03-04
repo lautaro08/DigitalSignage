@@ -140,7 +140,6 @@ namespace UI
                 {
 
                     MetroMessageBox.Show(this, "detalles del error: " + ex.Message, "Error al eliminar la campaña", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    throw;
                 }
 
             }
@@ -387,6 +386,8 @@ namespace UI
         void reloadSearch()
         {
 
+            campaignsGridView.DataSource = null;
+            campaignsGridView.Refresh();
             switch (filterComboBox.SelectedItem.ToString())
             {
 

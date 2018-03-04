@@ -87,6 +87,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BannerAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BannerAdmin.Designer.cs">
+      <DependentUpon>BannerAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BannerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BannerForm.Designer.cs">
+      <DependentUpon>BannerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="CampaignAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="BannerAdmin.resx">
+      <DependentUpon>BannerAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BannerForm.resx">
+      <DependentUpon>BannerForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CampaignAdmin.resx">
       <DependentUpon>CampaignAdmin.cs</DependentUpon>
     </EmbeddedResource>

@@ -1,5 +1,4 @@
-﻿using BLL;
-using DTO;
+﻿using DTO;
 using MetroFramework;
 using MetroFramework.Forms;
 using System;
@@ -16,35 +15,30 @@ namespace UI
 {
 
     /// <summary>
-    /// Pantalla para la carga de una camapaña
+    /// pantalla para la carga de un banner
     /// </summary>
-    public partial class CampaignForm : MetroForm
-
+    public partial class BannerForm : MetroForm
     {
-        //variable de instancia que contiene la campaña que se carga en el formulario
-        public CampaignDTO iCampaignModel;
 
-        public CampaignForm(CampaignDTO pCampaign)
+        //variable de instancia que contiene el banner que se carga en el formulario
+        public BannerDTO iBannerModel; 
+
+        public BannerForm(BannerDTO pBanner)
         {
             InitializeComponent();
 
-            imagesGridView.AutoGenerateColumns = false;
-
-            if (pCampaign != null)
+            if (pBanner != null)
             {
-                iCampaignModel = pCampaign;
-                loadCampaignInView();
+                iBannerModel = pBanner;
+                loadBannerInView();
             }
             else
             {
 
-                iCampaignModel = new CampaignDTO();
-                iCampaignModel.Images = new List<ImageDTO>();
+                iBannerModel = new BannerDTO();
 
             }
-            
         }
-
 
         /*
          
@@ -62,85 +56,6 @@ namespace UI
 
             }
 
-            
-        }
-
-        private void modifyImageButton_Click(object sender, EventArgs e)
-        {
-            if (imagesGridView.SelectedRows.Count == 0)
-            {
-                MetroMessageBox.Show(this, "Para modificar primero debe seleccionar una imagen de la lista", "No hay ninguna imagen seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var imageForm = new ImageForm(
-                DeepCopyHelper.DeepCopy<ImageDTO>((ImageDTO)imagesGridView.SelectedRows[0].DataBoundItem),
-                getImageListLength()
-            );
-            StyleManager.Clone(imageForm);
-
-            if (imageForm.ShowDialog(this) == DialogResult.OK)
-            {
-
-                var updatedImage = imageForm.iImageModel;
-                var oldImage = iCampaignModel.Images.Where(i => i.Id == updatedImage.Id).First();
-
-                //checkear que no ocupe el orden que ya tenia otra imagen
-                if (updatedImage.Order != oldImage.Order)
-                {
-
-                    var solapedImage = iCampaignModel.Images.Where(image => image.Order == updatedImage.Order).First();
-                    solapedImage.Order = oldImage.Order;
-
-                }
-
-                iCampaignModel.Images[iCampaignModel.Images.IndexOf(oldImage)] = updatedImage;
-                refreshImagesGridView();
-
-            }
-
-        }
-
-        private void addImageButton_Click(object sender, EventArgs e)
-        {
-            var imageForm = new ImageForm(null, getImageListLength());
-            StyleManager.Clone(imageForm);
-
-            if (imageForm.ShowDialog(this) == DialogResult.OK)
-            {
-
-                var newImage = imageForm.iImageModel;
-                var lastIndex = 1 + getImageListLength();
-
-                //checkear que no ocupe el orden que ya tenia otra imagen
-                if (newImage.Order != lastIndex)
-                {
-
-                    var solapedImage = iCampaignModel.Images.Where(image => image.Order == newImage.Order).First();
-                    solapedImage.Order = lastIndex;
-
-                }
-
-                iCampaignModel.Images.Add(imageForm.iImageModel);
-                refreshImagesGridView();
-
-            }
-            
-        }
-
-        private void deleteImageButton_Click(object sender, EventArgs e)
-        {
-            if (imagesGridView.SelectedRows.Count == 0)
-            {
-                MetroMessageBox.Show(this, "Para eliminar primero debe seleccionar una imagen de la lista", "No hay ninguna imagen seleccionada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return;
-            }
-
-            var selectedImage = (ImageDTO)imagesGridView.SelectedRows[0].DataBoundItem;
-            var index = iCampaignModel.Images.IndexOf(selectedImage);
-            iCampaignModel.Images.RemoveAt(index);
-            refreshImagesGridView();
-
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -151,18 +66,18 @@ namespace UI
 
                 try
                 {
-                    updateCampaignFromView();
+                    updateBannerFromView();
                     DialogResult = DialogResult.OK;
                     Close();
                 }
                 catch (Exception)
                 {
-                    MetroMessageBox.Show(this, "Ha ocurrido un error con los datos de la campaña, por favor intente cargarla nuevamente", "Error al guardar la campaña", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Ha ocurrido un error con los datos del banner, por favor intente cargarlo nuevamente", "Error al guardar el banner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 
             }
-          
+
         }
 
         /*
@@ -186,7 +101,7 @@ namespace UI
         {
             endTimeMinutes.Enabled = true;
         }
-        
+
         /*
          
           -----> VALIDATIONS <-----
@@ -199,7 +114,7 @@ namespace UI
             if (string.IsNullOrEmpty(nameTextBox.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(nameTextBox, "El nombre de la campaña es obligatorio.");
+                errorProvider1.SetError(nameTextBox, "El nombre del banner es obligatorio.");
                 return;
             }
             errorProvider1.SetError(nameTextBox, null);
@@ -212,7 +127,7 @@ namespace UI
             if (string.IsNullOrEmpty(descriptionTextBox.Text))
             {
                 e.Cancel = true;
-                errorProvider1.SetError(descriptionTextBox, "La descripcion de la campaña es obligatoria.");
+                errorProvider1.SetError(descriptionTextBox, "La descripcion del banner es obligatoria.");
                 return;
             }
             errorProvider1.SetError(descriptionTextBox, null);
@@ -240,17 +155,6 @@ namespace UI
                 return;
             }
             errorProvider1.SetError(endDatePicker, null);
-        }
-
-        private void imagesGridView_Validating(object sender, CancelEventArgs e)
-        {
-            if (iCampaignModel.Images.Count == 0)
-            {
-                errorProvider1.SetError(imagesGridView, "La campaña debe contener al menos una imagen");
-                e.Cancel = true;
-                return;
-            }
-            errorProvider1.SetError(imagesGridView, null);
         }
 
         private void initTimeHours_Validating(object sender, CancelEventArgs e)
@@ -294,7 +198,7 @@ namespace UI
                 errorProvider1.SetError(endTimeMinutes, "Debe seleccionar los minutos de finalizacion");
                 return;
             }
-            if(initTimeIsAfterEndTime())
+            if (initTimeIsAfterEndTime())
             {
                 e.Cancel = true;
                 errorProvider1.SetError(endTimeMinutes, "La hora de finalizacion debe ser despues de la hora de inicio");
@@ -335,53 +239,35 @@ namespace UI
             return initDatePicker.Value.CompareTo(endDatePicker.Value) > 0;
         }
 
-        private void refreshImagesGridView()
+        private void loadBannerInView()
         {
-
-            iCampaignModel.Images = iCampaignModel.Images.OrderBy(i => i.Order).ToList();
-            imagesGridView.DataSource = iCampaignModel.Images;
-            imagesGridView.Update();
+            nameTextBox.Text = iBannerModel.Name;
+            descriptionTextBox.Text = iBannerModel.Description;
+            initDatePicker.Value = iBannerModel.InitDate;
+            endDatePicker.Value = iBannerModel.EndDate;
+            initTimeHours.SelectedIndex = iBannerModel.InitTime.Hours;
+            initTimeMinutes.SelectedIndex = iBannerModel.InitTime.Minutes;
+            endTimeHours.SelectedIndex = iBannerModel.EndTime.Hours;
+            endTimeMinutes.SelectedIndex = iBannerModel.EndTime.Minutes;
 
         }
 
-        private void loadCampaignInView()
+        private void updateBannerFromView()
         {
-            nameTextBox.Text = iCampaignModel.Name;
-            descriptionTextBox.Text = iCampaignModel.Description;
-            initDatePicker.Value = iCampaignModel.InitDate;
-            endDatePicker.Value = iCampaignModel.EndDate;
-            initTimeHours.SelectedIndex = iCampaignModel.InitTime.Hours;
-            initTimeMinutes.SelectedIndex = iCampaignModel.InitTime.Minutes;
-            endTimeHours.SelectedIndex = iCampaignModel.EndTime.Hours;
-            endTimeMinutes.SelectedIndex = iCampaignModel.EndTime.Minutes;
-            refreshImagesGridView();
-           
-        }
-
-        private void updateCampaignFromView()
-        {
-            iCampaignModel.Name = nameTextBox.Text;
-            iCampaignModel.Description = descriptionTextBox.Text;
-            iCampaignModel.InitDate = initDatePicker.Value;
-            iCampaignModel.EndDate = endDatePicker.Value;
+            iBannerModel.Name = nameTextBox.Text;
+            iBannerModel.Description = descriptionTextBox.Text;
+            iBannerModel.InitDate = initDatePicker.Value;
+            iBannerModel.EndDate = endDatePicker.Value;
 
             int hours = int.Parse(initTimeHours.SelectedItem.ToString());
             int minutes = int.Parse(initTimeMinutes.SelectedItem.ToString());
-            iCampaignModel.InitTime = new TimeSpan(hours, minutes, 0);
+            iBannerModel.InitTime = new TimeSpan(hours, minutes, 0);
 
             hours = int.Parse(endTimeHours.SelectedItem.ToString());
             minutes = int.Parse(endTimeMinutes.SelectedItem.ToString());
-            iCampaignModel.EndTime = new TimeSpan(hours, minutes, 0);
+            iBannerModel.EndTime = new TimeSpan(hours, minutes, 0);
 
         }
-
-        private int getImageListLength()
-        {
-
-            return iCampaignModel.Images != null ? iCampaignModel.Images.Count : 0;
-
-        }
-
 
     }
 }

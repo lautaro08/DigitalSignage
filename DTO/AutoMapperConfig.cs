@@ -24,9 +24,7 @@ namespace DTO
 
                 cfg.CreateMap<Image, ImageDTO>().ReverseMap();
                 cfg.CreateMap<Banner, BannerDTO>().ReverseMap();
-                cfg.CreateMap<BannerRss, BannerRssDTO>().ReverseMap();
                 cfg.CreateMap<RssItem, RssItemDTO>().ReverseMap();
-                cfg.CreateMap<BannerText, BannerTextDTO>().ReverseMap();
 
             });
         }

@@ -19,6 +19,7 @@ namespace UI
             // Se crea la instancia del contenedor, configurando el mismo a través del archivo de configuración de la aplicación.
 
             IUnityContainer mUnityContainer = new UnityContainer()
+                .RegisterType<IBannerService, BannerService>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICampaignService, CampaignService>(new ContainerControlledLifetimeManager());
 
             return mUnityContainer;

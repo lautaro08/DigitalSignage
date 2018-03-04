@@ -51,8 +51,6 @@
   <ItemGroup>
     <Compile Include="EntityFramework\BannerRepository.cs" />
     <Compile Include="EntityFramework\DatabaseInitialization.cs" />
-    <Compile Include="EntityFramework\Mappings\BannerRssMap.cs" />
-    <Compile Include="EntityFramework\Mappings\BannerTextMap.cs" />
     <Compile Include="EntityFramework\CampaignRepository.cs" />
     <Compile Include="EntityFramework\DigitalSignageDbContext.cs" />
     <Compile Include="EntityFramework\Mappings\BannerMap.cs" />
@@ -60,14 +58,10 @@
     <Compile Include="EntityFramework\Mappings\ImageMap.cs" />
     <Compile Include="EntityFramework\Mappings\RssItemMap.cs" />
     <Compile Include="EntityFramework\Repository.cs" />
-    <Compile Include="EntityFramework\BannerRssRepository.cs" />
-    <Compile Include="EntityFramework\BannerTextRepository.cs" />
     <Compile Include="EntityFramework\UnitOfWork.cs" />
     <Compile Include="IBannerRepository.cs" />
     <Compile Include="ICampaignRepository.cs" />
     <Compile Include="IRepository.cs" />
-    <Compile Include="IBannerRssRepository.cs" />
-    <Compile Include="IBannerTextRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

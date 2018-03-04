@@ -42,16 +42,6 @@ namespace DAL.EntityFramework.Mappings
             this.Property(pBanner => pBanner.EndTime)
                 .IsRequired();
 
-            ////para la herencia se define un atributo tipo segun el tipo de subclase
-            Map<BannerRss>(x => x.Requires("type")
-                                        .HasValue("R")
-                                        .HasColumnType("char")
-                                        .HasMaxLength(1));
-
-            Map<BannerText>(x => x.Requires("type")
-                                          .HasValue("T")
-                            );
-
         }
     }
 }

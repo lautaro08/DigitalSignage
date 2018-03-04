@@ -95,6 +95,7 @@
             this.bannerAdminButton.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.bannerAdminButton.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.bannerAdminButton.UseSelectable = true;
+            this.bannerAdminButton.Click += new System.EventHandler(this.openBannerAdmin);
             // 
             // exitButton
             // 

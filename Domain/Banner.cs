@@ -49,5 +49,10 @@ namespace Domain
         /// </summary>
         public TimeSpan EndTime { get; set; }
 
+        /// <summary>
+        /// fuente del banner
+        /// </summary>
+        public virtual BannerSource Source { get; set; }
+
     }
 }

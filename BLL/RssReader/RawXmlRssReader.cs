@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Xml;
 using Domain;
 
-namespace UTN.FRCU.ISI.Taller.TPFinal.Model
+namespace BLL
 {
     /// <summary>
     /// Lector de RSS que procesa directamente el XML en bruto de la fuente.

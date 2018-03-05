@@ -54,9 +54,12 @@
     <Compile Include="EntityFramework\CampaignRepository.cs" />
     <Compile Include="EntityFramework\DigitalSignageDbContext.cs" />
     <Compile Include="EntityFramework\Mappings\BannerMap.cs" />
+    <Compile Include="EntityFramework\Mappings\BannerSourceMap.cs" />
     <Compile Include="EntityFramework\Mappings\CampaignMap.cs" />
     <Compile Include="EntityFramework\Mappings\ImageMap.cs" />
     <Compile Include="EntityFramework\Mappings\RssItemMap.cs" />
+    <Compile Include="EntityFramework\Mappings\TextSourceMap.cs" />
+    <Compile Include="EntityFramework\Mappings\RssSourceMap.cs" />
     <Compile Include="EntityFramework\Repository.cs" />
     <Compile Include="EntityFramework\UnitOfWork.cs" />
     <Compile Include="IBannerRepository.cs" />
@@ -69,6 +72,10 @@
     <ProjectReference Include="..\Domain\Domain.csproj">
       <Project>{b8225fa9-0bbe-4585-8ae3-a0bbb5e8849a}</Project>
       <Name>Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{F0E7E8D5-39C2-4AC6-9362-EB191B07DDFF}</Project>
+      <Name>DTO</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

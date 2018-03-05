@@ -53,8 +53,9 @@ namespace DAL.EntityFramework
         /// <param name="name">nombre de la Base de Datos</param>
         public DigitalSignageDbContext(String name) : base(name)
         {
+            this.Configuration.LazyLoadingEnabled = true;
             // Se establece la estrategia personalizada de inicialización de la BBDD.
-            Database.SetInitializer<DigitalSignageDbContext>(new CreateDatabaseIfNotExists<DigitalSignageDbContext>());
+            Database.SetInitializer<DigitalSignageDbContext>(new DropCreateDatabaseIfModelChanges<DigitalSignageDbContext>());
         }
 
         protected override void OnModelCreating(DbModelBuilder pModelBuilder)
@@ -65,6 +66,9 @@ namespace DAL.EntityFramework
             pModelBuilder.Configurations.Add(new CampaignMap());
             pModelBuilder.Configurations.Add(new RssItemMap());
             pModelBuilder.Configurations.Add(new ImageMap());
+            pModelBuilder.Configurations.Add(new BannerSourceMap());
+            pModelBuilder.Configurations.Add(new RssSourceMap());
+            pModelBuilder.Configurations.Add(new TextSourceMap());
 
             base.OnModelCreating(pModelBuilder);
         }

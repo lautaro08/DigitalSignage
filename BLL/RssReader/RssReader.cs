@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Domain;
 
-namespace UTN.FRCU.ISI.Taller.TPFinal.Model
+namespace BLL
 {
     /// <summary>
     /// Implementación de base del lector de RSS.

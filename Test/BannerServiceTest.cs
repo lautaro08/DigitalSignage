@@ -33,11 +33,28 @@ namespace Test
             BannerDTO.EndDate = new DateTime().AddYears(2018);
             BannerDTO.InitTime = new TimeSpan();
             BannerDTO.EndTime = new TimeSpan();
+            BannerDTO.Source = new RssSourceDTO()
+            {
+
+                Description = "fuente rss",
+                Url = "Una url",
+                RssItems = new List<RssItemDTO> {
+                        new RssItemDTO()
+                        {
+                            Description = "item rss",
+                            Url = "una url",
+                            Title = "titulo",
+                            PublishingDate = DateTime.Now
+                        }
+                    }
+
+            };
 
             try
             {
 
                 cS.Create(BannerDTO);
+                var result = cS.GetAll();
                 
             }
             catch (Exception e)
@@ -52,7 +69,7 @@ namespace Test
         public void RemoveBannerService()
         {
 
-            var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
+            var uow = new UnitOfWork(new DigitalSignageDbContext("DigitalSignageTest"));
 
             BannerService cS = new BannerService();
 
@@ -89,7 +106,7 @@ namespace Test
         public void UpdateBannerService()
         {
 
-            var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
+            var uow = new UnitOfWork(new DigitalSignageDbContext("DigitalSignageTest"));
 
             BannerService cS = new BannerService();
 
@@ -133,7 +150,7 @@ namespace Test
         public void GetBannerService()
         {
 
-            var uow = new UnitOfWork(new DigitalSignageDbContext("Test"));
+            var uow = new UnitOfWork(new DigitalSignageDbContext("TestDigitalSignageTest"));
 
             BannerService cS = new BannerService();
 
@@ -161,6 +178,23 @@ namespace Test
                 Assert.Fail(e.Message);
 
             }
+
+        }
+
+        [TestMethod]
+        public void GetAllBannerService()
+        {
+
+            var uow = new UnitOfWork(new DigitalSignageDbContext("DigitalSignageTest"));
+
+            BannerService bS = new BannerService();
+
+            IEnumerable<BannerDTO> result = bS.GetAll();
+
+
+            IEnumerator<BannerDTO> e = result.GetEnumerator();
+            e.MoveNext();
+            Assert.IsNotNull(e.Current);
 
         }
 

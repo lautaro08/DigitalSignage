@@ -8,13 +8,13 @@ namespace DTO
 {
     [Serializable]
     /// <summary>
-    /// DTO para la clase BannerRss
+    /// DTO para la clase banner source
     /// </summary>
-    public class BannerRssDTO : BannerDTO
+    public class BannerSourceDTO
     {
-        
-        public String Url { get; set; }
-        public IEnumerable<RssItemDTO> RssItems { get; set; }
+
+        public int Id { get; set; }
+        public string Description { get; set; }
 
     }
 }

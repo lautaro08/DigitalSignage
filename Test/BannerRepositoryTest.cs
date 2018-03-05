@@ -1,6 +1,8 @@
 ﻿using DAL.EntityFramework;
 using Domain;
+using DTO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -17,24 +19,45 @@ namespace Test
 
             Banner newBannerRss = new Banner()
             {
-                Name = "CatName1",
-                Description = "Desc1",
-                InitDate = new System.DateTime(2018, 2, 1),
-                EndDate = new System.DateTime(2018, 2, 10),
-                InitTime = new System.TimeSpan(),
-                EndTime = new System.TimeSpan(1)
+                Name = "banner rss",
+                Description = "descripcion del banner",
+                InitDate = new DateTime(2018, 2, 1),
+                EndDate = new DateTime(2018, 2, 10),
+                InitTime = new TimeSpan(),
+                EndTime = new TimeSpan(1),
+                Source = new RssSource()
+                {
+
+                    Description = "fuente rss",
+                    Url = "Una url",
+                    RssItems = new List<RssItem> {
+                        new RssItem()
+                        {
+                            Description = "item rss",
+                            Url = "una url",
+                            Title = "titulo",
+                            PublishingDate = DateTime.Now
+                        }
+                    }
+
+                }
             };
 
             unit.BannerRepository.Add(newBannerRss);
 
             Banner newBannerTxt = new Banner()
             {
-                Name = "CatName1",
-                Description = "Desc1",
-                InitDate = new System.DateTime(2018, 2, 1),
-                EndDate = new System.DateTime(2018, 2, 10),
-                InitTime = new System.TimeSpan(),
-                EndTime = new System.TimeSpan(1)
+                Name = "banner texto",
+                Description = "descripcion",
+                InitDate = new DateTime(2018, 2, 1),
+                EndDate = new DateTime(2018, 2, 10),
+                InitTime = new TimeSpan(),
+                EndTime = new TimeSpan(1),
+                Source = new TextSource()
+                {
+                    Description = "fuente texto",
+                    Text = "texto de la fuente"
+                }
             };
 
             unit.BannerRepository.Add(newBannerTxt);

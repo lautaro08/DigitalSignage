@@ -20,6 +20,7 @@ namespace DTO
         public DateTime EndDate { get; set; }
         public TimeSpan InitTime { get; set; }
         public TimeSpan EndTime { get; set; }
+        public BannerSourceDTO Source { get; set; }
         
     }
 }

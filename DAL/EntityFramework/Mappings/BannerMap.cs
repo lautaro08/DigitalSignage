@@ -14,7 +14,7 @@ namespace DAL.EntityFramework.Mappings
         public BannerMap()
         {
             // nombre de la tabla
-            this.ToTable("Banner");
+            this.ToTable("Banners");
 
             // Clave primaria de la entidad, indicando que la columna se llama 'BannerId' y que es autoincremental.
             this.HasKey(pBanner => pBanner.Id)

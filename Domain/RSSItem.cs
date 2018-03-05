@@ -16,7 +16,7 @@ namespace Domain
         /// <summary>
         /// Id del banner al que pertenece
         /// </summary>
-        public int IdBanner { get; set; }
+        public int IdRssSource { get; set; }
 
         /// <summary>
         /// Título del ítem.

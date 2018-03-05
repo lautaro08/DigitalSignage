@@ -52,7 +52,7 @@ namespace Domain
         /// <summary>
         /// imagenes que componen la campaña
         /// </summary>
-        public IList<Image> Images { get; set; }
+        public virtual IList<Image> Images { get; set; }
 
     }
 }

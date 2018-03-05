@@ -15,7 +15,7 @@ namespace DTO
 
         public String Title { get; set; }
         public String Description { get; set; }
-        public Uri Url { get; set; }
+        public String Url { get; set; }
         public DateTime? PublishingDate { get; set; }
 
     }

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Domain;
 
-namespace UTN.FRCU.ISI.Taller.TPFinal.Model
+namespace BLL
 {
     /// <summary>
     /// Lector de Really Simple Syndication (RSS).

@@ -17,13 +17,17 @@ namespace DTO
         {
             Mapper.Initialize(cfg => {
 
-                cfg.CreateMap<Campaign, CampaignDTO>();
-
-                //Para que no mapee las imagenes desde el DTO, hay que hacerlo a mano
-                cfg.CreateMap<Campaign, CampaignDTO>();
-
+                cfg.CreateMap<BannerSource, BannerSourceDTO>().ReverseMap();
+                cfg.CreateMap<RssSource, RssSourceDTO>()
+                    .IncludeBase<BannerSource, BannerSourceDTO>()
+                    .ReverseMap();
+                cfg.CreateMap<TextSource, TextSourceDTO>()
+                    .IncludeBase<BannerSource, BannerSourceDTO>()
+                    .ReverseMap();
+                cfg.CreateMap<Campaign, CampaignDTO>().ReverseMap();
                 cfg.CreateMap<Image, ImageDTO>().ReverseMap();
-                cfg.CreateMap<Banner, BannerDTO>().ReverseMap();
+                cfg.CreateMap<Banner, BannerDTO>();
+                cfg.CreateMap<BannerDTO, Banner>();
                 cfg.CreateMap<RssItem, RssItemDTO>().ReverseMap();
 
             });

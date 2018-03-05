@@ -18,22 +18,9 @@ namespace DAL.EntityFramework
         {
         }
 
-        public override Campaign Get(int pId)
-        {
-            //incluye las entidades Imagenes relacionadas en la respuesta
-            return base.iDbContext.Set<Campaign>().Include("Images").Where(c => c.Id == pId).FirstOrDefault();
-        }
-
-        public override IEnumerable<Campaign> GetAll()
-        {
-            //incluye las entidades Imagenes relacionadas en la respuesta
-            return this.iDbContext.Set<Campaign>().Include("Images").ToList();
-        }
-
         public IEnumerable<Campaign> GetCampaignsActiveInDate(DateTime pDate)
         {
             return base.iDbContext.Set<Campaign>()
-                .Include("Images")
                 .Where(c => EntityFunctions.TruncateTime(c.InitDate) <= EntityFunctions.TruncateTime(pDate))
                 .Where(c => EntityFunctions.TruncateTime(c.EndDate) >= EntityFunctions.TruncateTime(pDate))
                 .ToList();

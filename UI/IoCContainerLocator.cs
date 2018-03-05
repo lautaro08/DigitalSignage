@@ -16,9 +16,9 @@ namespace UI
         /// </summary>
         private static readonly Lazy<IUnityContainer> cInstance = new Lazy<IUnityContainer>(() =>
         {
-            // Se crea la instancia del contenedor, configurando el mismo a través del archivo de configuración de la aplicación.
 
             IUnityContainer mUnityContainer = new UnityContainer()
+                .RegisterType<IRssReader, RawXmlRssReader>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBannerService, BannerService>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICampaignService, CampaignService>(new ContainerControlledLifetimeManager());
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain;
+using DTO;
 
 namespace BLL
 {
@@ -16,7 +17,7 @@ namespace BLL
         /// <param name="pUrl">URL del feed.</param>
         /// <returns>Ítems.</returns>
         /// <exception cref="System.ArgumentNullException">Si no se proporciona una URL.</exception>
-        IEnumerable<RssItem> Read(Uri pUrl);
+        IEnumerable<RssItemDTO> Read(Uri pUrl);
 
         /// <summary>
         /// Obtiene los ítems de un feed RSS, donde <paramref name="pUrl"/> es una instancia de <see cref="System.String"/>.
@@ -25,7 +26,7 @@ namespace BLL
         /// <returns>Ítems.</returns>
         /// <exception cref="System.ArgumentNullException">Si no se proporciona una URL.</exception>
         /// <exception cref="System.UriFormatException">Si la URL no es válida.</exception>
-        IEnumerable<RssItem> Read(String pUrl);
+        IEnumerable<RssItemDTO> Read(String pUrl);
 
     }
 }

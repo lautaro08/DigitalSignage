@@ -19,11 +19,6 @@ namespace Domain
         public int Id { get; set; }
 
         /// <summary>
-        /// descripcion de la fuente
-        /// </summary>
-        public string Description { get; set; }
-
-        /// <summary>
         /// toda fuente de un banner debe implementar este metodo para devolver su texto
         /// </summary>
         /// <returns>texto que sera mostrado del banner en pantalla</returns>

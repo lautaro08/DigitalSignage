@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Domain;
+using DTO;
 
 namespace BLL
 {
@@ -10,7 +11,7 @@ namespace BLL
     public abstract class RssReader : IRssReader
     {
 
-        public IEnumerable<RssItem> Read(String pUrl)
+        public IEnumerable<RssItemDTO> Read(String pUrl)
         {
             if (String.IsNullOrWhiteSpace(pUrl))
             {
@@ -20,7 +21,7 @@ namespace BLL
             return this.Read(new Uri(pUrl));
         }
 
-        public abstract IEnumerable<RssItem> Read(Uri pUrl);
+        public abstract IEnumerable<RssItemDTO> Read(Uri pUrl);
 
     }
 }

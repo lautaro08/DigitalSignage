@@ -22,6 +22,10 @@ namespace DAL.EntityFramework.Mappings
             // nombre de la tabla
             this.ToTable("RssSources");
 
+            // columna 'description' obligatoria
+            this.Property(pBannerSource => pBannerSource.Description)
+                .IsRequired();
+
             // columna 'url' obligatoria
             this.Property(pRssSource => pRssSource.Url)
                 .IsRequired();

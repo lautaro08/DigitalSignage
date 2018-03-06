@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using UI.RssSource_source_forms;
 
 namespace UI
 {
@@ -21,11 +22,18 @@ namespace UI
     {
 
         //variable de instancia que contiene el banner que se carga en el formulario
-        public BannerDTO iBannerModel; 
+        public BannerDTO iBannerModel;
+
+        //constantes para los tipos de fuentes
+        const string RSS_SOURCE = "Fuente RSS";
+        const string TEXT_SOURCE = "Fuente de texto";
 
         public BannerForm(BannerDTO pBanner)
         {
             InitializeComponent();
+
+            sourceComboBox.Items.Add(RSS_SOURCE);
+            sourceComboBox.Items.Add(TEXT_SOURCE);
 
             if (pBanner != null)
             {
@@ -38,6 +46,7 @@ namespace UI
                 iBannerModel = new BannerDTO();
 
             }
+                       
         }
 
         /*
@@ -61,7 +70,7 @@ namespace UI
         private void saveButton_Click(object sender, EventArgs e)
         {
 
-            if (ValidateChildren(ValidationConstraints.Enabled))
+            if (ValidateChildren(ValidationConstraints.Visible))
             {
 
                 try
@@ -70,9 +79,9 @@ namespace UI
                     DialogResult = DialogResult.OK;
                     Close();
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MetroMessageBox.Show(this, "Ha ocurrido un error con los datos del banner, por favor intente cargarlo nuevamente", "Error al guardar el banner", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, "Detalles del error : " + ex.Message, "Error al guardar el banner", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
 
@@ -250,6 +259,33 @@ namespace UI
             endTimeHours.SelectedIndex = iBannerModel.EndTime.Hours;
             endTimeMinutes.SelectedIndex = iBannerModel.EndTime.Minutes;
 
+            if (iBannerModel.Source is TextSourceDTO)
+            {
+
+                sourceComboBox.SelectedItem = TEXT_SOURCE;
+                var textSource = (TextSourceDTO)iBannerModel.Source;
+                textSourceTextBox.Text = textSource.Text;
+
+            }
+
+            if (iBannerModel.Source is RssSourceDTO)
+            {
+
+                sourceComboBox.SelectedItem = RSS_SOURCE;
+                sourceComboBox_SelectedValueChanged(sourceComboBox, EventArgs.Empty);
+
+                var rssSource = (RssSourceDTO)iBannerModel.Source;
+                rssSourceLabel.Text = string.Format(
+                    "Id: {1}{0}Descripcion: {2}{0}Url: {3}{0}", 
+                    Environment.NewLine, 
+                    rssSource.Id, 
+                    rssSource.Description, 
+                    rssSource.Url
+                );
+
+            }
+
+
         }
 
         private void updateBannerFromView()
@@ -267,7 +303,122 @@ namespace UI
             minutes = int.Parse(endTimeMinutes.SelectedItem.ToString());
             iBannerModel.EndTime = new TimeSpan(hours, minutes, 0);
 
+            if (sourceComboBox.SelectedItem.ToString() == TEXT_SOURCE)
+            {
+
+                var textSource = new TextSourceDTO();
+                textSource.Text = textSourceTextBox.Text;
+                iBannerModel.Source = textSource;
+
+            }
+
+            if (sourceComboBox.SelectedItem.ToString() == RSS_SOURCE && (iBannerModel.Source == null || iBannerModel.Source is TextSourceDTO))
+            {
+
+                throw new Exception("Debe seleccionar una fuente RSS");
+
+            }
+
         }
 
+        private void sourceComboBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (sourceComboBox.SelectedIndex == -1)
+            {
+
+                e.Cancel = true;
+                errorProvider1.SetError(sourceComboBox, "Debe seleccionar una fuente para el banner");
+                return;
+
+            }
+
+            errorProvider1.SetError(sourceComboBox, null);
+
+        }
+
+        private void sourceComboBox_SelectedValueChanged(object sender, EventArgs e)
+        {
+
+            switch (sourceComboBox.SelectedItem.ToString())
+            {
+
+                case RSS_SOURCE:
+                    textSourceLabel.Visible = false;
+                    textSourceTextBox.Visible = false;
+                    rssSourceLabel.Visible = true;
+                    selectRssSourceButton.Visible = true;
+                    break;
+
+                case TEXT_SOURCE:
+                    textSourceLabel.Visible = true;
+                    textSourceTextBox.Visible = true;
+                    selectRssSourceButton.Visible = false;
+                    rssSourceLabel.Visible = false;
+                    break;
+
+                default:
+                    break;
+
+            }
+
+        }
+
+        private void textSourceTextBox_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(textSourceTextBox.Text))
+            {
+
+                e.Cancel = true;
+                errorProvider1.SetError(textSourceTextBox, "Debe ingresar un texto para la fuente");
+                return;
+
+
+            }
+
+            errorProvider1.SetError(textSourceTextBox, null);
+
+        }
+
+        private void selectRssSourceButton_Click(object sender, EventArgs e)
+        {
+
+            var selectionMode = true;
+            var rssSourceAdmin = new RssSourceAdmin(selectionMode);
+            this.StyleManager.Clone(rssSourceAdmin);
+
+            if (rssSourceAdmin.ShowDialog(this) == DialogResult.OK)
+            {
+
+                rssSourceLabel.Visible = true;
+                var rssSource = rssSourceAdmin.iSelectedRssSource;
+                rssSourceLabel.Text = string.Format(
+                    "Id: {1}{0}Descripcion: {2}{0}Url: {3}{0}",
+                    Environment.NewLine,
+                    rssSource.Id,
+                    rssSource.Description,
+                    rssSource.Url
+                );
+                iBannerModel.Source = rssSource;
+
+            }
+        }
+
+        private void selectRssSourceButton_Validating(object sender, CancelEventArgs e)
+        {
+
+            if (sourceComboBox.SelectedItem.ToString() == RSS_SOURCE && iBannerModel.Source == null)
+            {
+
+                e.Cancel = true;
+                errorProvider1.SetError(selectRssSourceButton, "Debe seleccionar una fuente RSS");
+                return;
+
+            }
+
+            errorProvider1.SetError(selectRssSourceButton, null);
+
+        }
     }
 }

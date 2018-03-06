@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Xml;
 using Domain;
+using DTO;
 
 namespace BLL
 {
@@ -16,7 +17,7 @@ namespace BLL
         /// </summary>
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        public override IEnumerable<RssItem> Read(Uri pUrl)
+        public override IEnumerable<RssItemDTO> Read(Uri pUrl)
         {
             if (pUrl == null)
             {
@@ -55,12 +56,12 @@ namespace BLL
 
             log.Info("Ha finalizado la obtención de feeds.");
             //log.Debug(pLogger => pLogger("Se ha obtenido el siguiente XML: {0}", mRssXmlDocument.OuterXml));
-            IList<RssItem> mRssItems = new List<RssItem>();
+            IList<RssItemDTO> mRssItems = new List<RssItemDTO>();
 
             log.Info("Adaptando feeds...");
             foreach (XmlNode bRssXmlItem in mRssXmlDocument.SelectNodes("//channel/item"))
             {
-                mRssItems.Add(new RssItem
+                mRssItems.Add(new RssItemDTO
                 {
                     Title = RawXmlRssReader.GetXmlNodeValue<String>(bRssXmlItem, "title"),
                     Description = RawXmlRssReader.GetXmlNodeValue<String>(bRssXmlItem, "description"),

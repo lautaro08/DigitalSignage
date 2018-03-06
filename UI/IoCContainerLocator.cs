@@ -19,6 +19,7 @@ namespace UI
 
             IUnityContainer mUnityContainer = new UnityContainer()
                 .RegisterType<IRssReader, RawXmlRssReader>(new ContainerControlledLifetimeManager())
+                .RegisterType<IRssSourceService, RssSourceService>(new ContainerControlledLifetimeManager())
                 .RegisterType<IBannerService, BannerService>(new ContainerControlledLifetimeManager())
                 .RegisterType<ICampaignService, CampaignService>(new ContainerControlledLifetimeManager());
 

@@ -25,10 +25,6 @@ namespace DAL.EntityFramework.Mappings
                 .HasColumnName("BannerSourceId")
                 .HasDatabaseGeneratedOption(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption.Identity);
 
-            // columna 'description' obligatoria
-            this.Property(pBannerSource => pBannerSource.Description)
-                .IsRequired();
-
         }
     }
 }

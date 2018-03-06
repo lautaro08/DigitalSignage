@@ -2,6 +2,7 @@
 using MetroFramework.Forms;
 using System;
 using System.Windows.Forms;
+using UI.RssSource_source_forms;
 
 namespace UI
 {
@@ -38,6 +39,17 @@ namespace UI
             this.Cursor = Cursors.Default;
             this.StyleManager.Clone(bannerAdmin);
             bannerAdmin.ShowDialog(this);
+
+        }
+
+        private void openRssSourceAdmin_Click(object sender, EventArgs e)
+        {
+
+            this.Cursor = Cursors.WaitCursor;
+            var rssSourceAdmin = new RssSourceAdmin();
+            this.Cursor = Cursors.Default;
+            this.StyleManager.Clone(rssSourceAdmin);
+            rssSourceAdmin.ShowDialog(this);
 
         }
 

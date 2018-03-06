@@ -55,7 +55,6 @@ namespace Test
                 EndTime = new TimeSpan(1),
                 Source = new TextSource()
                 {
-                    Description = "fuente texto",
                     Text = "texto de la fuente"
                 }
             };

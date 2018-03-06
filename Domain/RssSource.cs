@@ -19,6 +19,11 @@ namespace Domain
         public string Url { get; set; }
 
         /// <summary>
+        /// descripcion de la fuente
+        /// </summary>
+        public string Description { get; set; }
+
+        /// <summary>
         /// Items que se almacenan para dar soporte ofline a la fuente RSS
         /// </summary>
         public virtual IList<RssItem> RssItems { get; set; }

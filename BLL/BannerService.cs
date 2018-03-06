@@ -207,6 +207,7 @@ namespace BLL
                 oldBanner.InitTime = updatedBanner.InitTime;
                 oldBanner.EndTime = updatedBanner.EndTime;
                 oldBanner.Name = updatedBanner.Name;
+                oldBanner.Source = updatedBanner.Source;
 
                 //Guardando los cambios
                 iUnitOfWork.Complete();

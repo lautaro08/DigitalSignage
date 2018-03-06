@@ -572,9 +572,9 @@
             // exitButton
             // 
             this.exitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.exitButton.Location = new System.Drawing.Point(278, 463);
+            this.exitButton.Location = new System.Drawing.Point(278, 489);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(146, 49);
+            this.exitButton.Size = new System.Drawing.Size(146, 23);
             this.exitButton.TabIndex = 23;
             this.exitButton.Text = "salir";
             this.exitButton.UseSelectable = true;
@@ -583,9 +583,9 @@
             // saveButton
             // 
             this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.saveButton.Location = new System.Drawing.Point(483, 463);
+            this.saveButton.Location = new System.Drawing.Point(483, 489);
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(146, 49);
+            this.saveButton.Size = new System.Drawing.Size(146, 23);
             this.saveButton.TabIndex = 24;
             this.saveButton.Text = "guardar cambios";
             this.saveButton.UseSelectable = true;

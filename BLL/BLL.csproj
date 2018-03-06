@@ -59,8 +59,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BannerService.cs" />
+    <Compile Include="RssSourceService.cs" />
     <Compile Include="DeepCopyHelper.cs" />
     <Compile Include="IBannerService.cs" />
+    <Compile Include="IRssSourceService.cs" />
     <Compile Include="ICampaignService.cs" />
     <Compile Include="CampaignService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

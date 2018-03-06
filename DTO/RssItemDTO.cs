@@ -5,8 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DTO
-{   
+{
 
+    [Serializable]
     /// <summary>
     /// DTO para la clase RssItem
     /// </summary>

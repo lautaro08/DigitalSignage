@@ -16,6 +16,8 @@ namespace DTO
         /// </summary>
         public string Url { get; set; }
 
+        public string Description { get; set; }
+
         /// <summary>
         /// Items que se almacenan para dar soporte ofline a la fuente RSS
         /// </summary>

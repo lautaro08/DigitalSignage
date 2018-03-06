@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\BannerRepository.cs" />
+    <Compile Include="EntityFramework\RssSourceRepository.cs" />
     <Compile Include="EntityFramework\DatabaseInitialization.cs" />
     <Compile Include="EntityFramework\CampaignRepository.cs" />
     <Compile Include="EntityFramework\DigitalSignageDbContext.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="EntityFramework\Repository.cs" />
     <Compile Include="EntityFramework\UnitOfWork.cs" />
     <Compile Include="IBannerRepository.cs" />
+    <Compile Include="IRssSourceRepository.cs" />
     <Compile Include="ICampaignRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />

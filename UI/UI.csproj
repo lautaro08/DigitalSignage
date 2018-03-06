@@ -87,34 +87,46 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BannerAdmin.cs">
+    <Compile Include="Banner forms\BannerAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BannerAdmin.Designer.cs">
+    <Compile Include="Banner forms\BannerAdmin.Designer.cs">
       <DependentUpon>BannerAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="BannerForm.cs">
+    <Compile Include="Banner forms\BannerForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="BannerForm.Designer.cs">
+    <Compile Include="Banner forms\BannerForm.Designer.cs">
       <DependentUpon>BannerForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CampaignAdmin.cs">
+    <Compile Include="Banner source forms\RssSourceAdmin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CampaignAdmin.Designer.cs">
+    <Compile Include="Banner source forms\RssSourceAdmin.Designer.cs">
+      <DependentUpon>RssSourceAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Banner source forms\RssSourceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Banner source forms\RssSourceForm.Designer.cs">
+      <DependentUpon>RssSourceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Campaign forms\CampaignAdmin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Campaign forms\CampaignAdmin.Designer.cs">
       <DependentUpon>CampaignAdmin.cs</DependentUpon>
     </Compile>
-    <Compile Include="CampaignForm.cs">
+    <Compile Include="Campaign forms\CampaignForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="CampaignForm.Designer.cs">
+    <Compile Include="Campaign forms\CampaignForm.Designer.cs">
       <DependentUpon>CampaignForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ImageForm.cs">
+    <Compile Include="Campaign forms\ImageForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ImageForm.Designer.cs">
+    <Compile Include="Campaign forms\ImageForm.Designer.cs">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </Compile>
     <Compile Include="IoCContainerLocator.cs" />
@@ -126,19 +138,25 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="BannerAdmin.resx">
+    <EmbeddedResource Include="Banner forms\BannerAdmin.resx">
       <DependentUpon>BannerAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="BannerForm.resx">
+    <EmbeddedResource Include="Banner forms\BannerForm.resx">
       <DependentUpon>BannerForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CampaignAdmin.resx">
+    <EmbeddedResource Include="Banner source forms\RssSourceAdmin.resx">
+      <DependentUpon>RssSourceAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Banner source forms\RssSourceForm.resx">
+      <DependentUpon>RssSourceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Campaign forms\CampaignAdmin.resx">
       <DependentUpon>CampaignAdmin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="CampaignForm.resx">
+    <EmbeddedResource Include="Campaign forms\CampaignForm.resx">
       <DependentUpon>CampaignForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ImageForm.resx">
+    <EmbeddedResource Include="Campaign forms\ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
@@ -154,6 +172,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="ClassDiagram1.cd" />
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
@@ -211,6 +230,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\moon %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rss.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

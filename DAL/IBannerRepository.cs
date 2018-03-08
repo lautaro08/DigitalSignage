@@ -18,7 +18,7 @@ namespace DAL
     {
 
         /// <summary>
-        /// Obtiene los banners activos en una fecha determinada
+        /// Obtiene todos los banners activos en una fecha determinada
         /// </summary>
         /// <param name="pDate"></param>
         /// <returns></returns>
@@ -30,6 +30,15 @@ namespace DAL
         /// <param name="pDate"></param>
         /// <returns></returns>
         IEnumerable<Banner> GetBannersByName(string pName);
+
+        /// <summary>
+        /// Obtiene los banners activos en una fecha y rango de hora específico
+        /// </summary>
+        /// <param name="pDate">Fecha</param>
+        /// <param name="pTimeFrom">Tiempo de inicio para la busqueda</param>
+        /// <param name="pTimeTo">tiempo de fin para la busqueda</param>
+        /// <returns>Lista de bannersactivos en el horario y fecha dados</returns>
+        IEnumerable<Banner> GetActiveBannersInRange(DateTime pDate, TimeSpan pTimeFrom, TimeSpan pTimeTo);
 
     }
 

@@ -11,7 +11,7 @@ namespace BLL
     /// <summary>
     /// Interface para el servicio de campañas
     /// </summary>
-    public interface ICampaignService
+    public interface ICampaignService : IObservable<Byte []>
     {
 
         /// <summary>

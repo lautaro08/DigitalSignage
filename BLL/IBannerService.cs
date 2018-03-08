@@ -11,7 +11,7 @@ namespace BLL
     /// <summary>
     /// interfaz para el servicio de banners
     /// </summary>
-    public interface IBannerService
+    public interface IBannerService : IObservable<string>
     {
 
         /// <summary>
@@ -58,6 +58,8 @@ namespace BLL
         /// <param name="pDate"></param>
         /// <returns></returns>
         IEnumerable<BannerDTO> GetBannersByName(string pName);
+
+
 
     }
 }

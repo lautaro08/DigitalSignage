@@ -68,5 +68,13 @@ namespace UI
             this.msmMain.Theme = MetroThemeStyle.Dark;
         }
 
+        private void openOperativeButton_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            var digitalSignageScreen = new DigitalSignageScreen();
+            this.Cursor = Cursors.Default;
+            this.StyleManager.Clone(digitalSignageScreen);
+            digitalSignageScreen.Show(this);
+        }
     }
 }

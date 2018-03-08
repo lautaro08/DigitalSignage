@@ -129,6 +129,12 @@
     <Compile Include="Campaign forms\ImageForm.Designer.cs">
       <DependentUpon>ImageForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="DigitalSignageScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DigitalSignageScreen.Designer.cs">
+      <DependentUpon>DigitalSignageScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="IoCContainerLocator.cs" />
     <Compile Include="MainView.cs">
       <SubType>Form</SubType>
@@ -158,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Campaign forms\ImageForm.resx">
       <DependentUpon>ImageForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DigitalSignageScreen.resx">
+      <DependentUpon>DigitalSignageScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>

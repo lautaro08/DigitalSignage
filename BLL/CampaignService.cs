@@ -1,9 +1,9 @@
 ﻿using DTO;
 using Domain;
-using DAL;
 using DAL.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace BLL
 {
@@ -16,6 +16,12 @@ namespace BLL
 
         private UnitOfWork iUnitOfWork;
 
+        //lista de subscriptos para obtener la imagen de la campaña actual
+        private List<IObserver<byte[]>> observers;
+
+        private byte[] iCurrentImage = File.ReadAllBytes("../../../assets/image.jpg");
+
+
         /// <summary>
         /// Constructor para usar contexto por defecto
         /// </summary>
@@ -24,6 +30,7 @@ namespace BLL
 
             this.iUnitOfWork = new UnitOfWork(new DigitalSignageDbContext());
 
+            observers = new List<IObserver<byte[]>>();
         }
 
         /// <summary>
@@ -80,14 +87,14 @@ namespace BLL
                 log.Info("Campaña eliminada con exito");
 
             }
-            catch(ArgumentNullException e)
+            catch (ArgumentNullException e)
             {
 
                 log.Error("Error al eliminar campaña: " + e.Message);
                 throw new ArgumentException();
 
             }
-            
+
         }
 
         /// <summary>
@@ -110,7 +117,7 @@ namespace BLL
                 iUnitOfWork.Complete();
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
                 log.Error("Error al actualizar camapaña: " + e.Message);
@@ -140,7 +147,7 @@ namespace BLL
                 return campaignDTO;
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
 
                 log.Error("Error al obtener campaña: " + e.Message);
@@ -238,5 +245,23 @@ namespace BLL
             }
 
         }
+
+        /// <summary>
+        /// subscripcion para recibir el texto del banner actual
+        /// </summary>
+        /// <param name="observer"></param>
+        /// <returns></returns>
+        public IDisposable Subscribe(IObserver<byte[]> observer)
+        {
+            // verifica que el observador no exista en la lista
+            if (!observers.Contains(observer))
+            {
+                observers.Add(observer);
+                // Envia al nuevo s observador el texto actual.
+                observer.OnNext(iCurrentImage);
+            }
+            return new Unsubscriber<byte[]>(observers, observer);
+        }
     }
+
 }

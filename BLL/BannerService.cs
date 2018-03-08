@@ -16,12 +16,19 @@ namespace BLL
 
         private UnitOfWork iUnitOfWork;
 
+        //lista de subscriptos para obtener el texto del banner actual
+        private List<IObserver<string>> observers;
+
+        private string iCurrentText = "No hay ninguna campaña activa en este momento";
+
         /// <summary>
         /// Constructor para usar contexto por defecto
         /// </summary>
         public BannerService()
         {
             this.iUnitOfWork = new UnitOfWork(new DigitalSignageDbContext());
+
+            observers = new List<IObserver<string>>();
         }
 
         /// <summary>
@@ -220,6 +227,42 @@ namespace BLL
                 throw new Exception();
 
             }
+        }
+        
+        /// <summary>
+        /// subscripcion para recibir el texto del banner actual
+        /// </summary>
+        /// <param name="observer"></param>
+        /// <returns></returns>
+        public IDisposable Subscribe(IObserver<string> observer)
+        {
+            // verifica que el observador no exista en la lista
+            if (!observers.Contains(observer))
+            {
+                observers.Add(observer);
+                // Envia al nuevo s observador el texto actual.
+                observer.OnNext(iCurrentText);
+            }
+            return new Unsubscriber<string>(observers, observer);
+        }
+    }
+
+    //clase que provee la funcionalidad a los observadores de desubscribirse
+    public class Unsubscriber<T> : IDisposable
+    {
+        private List<IObserver<T>> _observers;
+        private IObserver<T> _observer;
+
+        public Unsubscriber(List<IObserver<T>> observers, IObserver<T> observer)
+        {
+            this._observers = observers;
+            this._observer = observer;
+        }
+
+        public void Dispose()
+        {
+            if (_observers.Contains(_observer))
+                _observers.Remove(_observer);
         }
     }
 }

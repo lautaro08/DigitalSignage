@@ -4,6 +4,7 @@ using DAL.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading;
 
 namespace BLL
 {
@@ -16,11 +17,25 @@ namespace BLL
 
         private UnitOfWork iUnitOfWork;
 
-        //lista de subscriptos para obtener la imagen de la campaña actual
-        private List<IObserver<byte[]>> observers;
+        //lista de subscriptos para obtener la lista de imagenes actual
+        private List<IObserver<IEnumerable<byte[]>>> observers;
 
-        private byte[] iCurrentImage = File.ReadAllBytes("../../../assets/image.jpg");
+        //lista de campañas en los proximos <UPDATE_TIME_IN_MINUTES> minutos
+        private List<Banner> iNextCampaigns;
 
+        //lista de campañas activos en este momento
+        private List<Banner> iCurrentCampaigns;
+
+        //intervalo de tiempo en minutos en los que se vuelve a actualizar la lista actual de campañas
+        private const int UPDATE_TIME_IN_MINUTES = 10;
+
+
+        //intervalo de tiempo en segundos en los que se actualizan las listas de campañas
+        private const int REFRESH_TIME_IN_SECONDS = 10;
+
+        //con este token se pueden cancelar los task asyncronos
+        private CancellationToken cancellationToken;
+        private CancellationTokenSource tokenSource;
 
         /// <summary>
         /// Constructor para usar contexto por defecto
@@ -30,7 +45,7 @@ namespace BLL
 
             this.iUnitOfWork = new UnitOfWork(new DigitalSignageDbContext());
 
-            observers = new List<IObserver<byte[]>>();
+            observers = new List<IObserver<IEnumerable<byte[]>>>();
         }
 
         /// <summary>
@@ -251,7 +266,7 @@ namespace BLL
         /// </summary>
         /// <param name="observer"></param>
         /// <returns></returns>
-        public IDisposable Subscribe(IObserver<byte[]> observer)
+        public IDisposable Subscribe(IObserver<IEnumerable<byte[]>> observer)
         {
             // verifica que el observador no exista en la lista
             if (!observers.Contains(observer))
@@ -260,7 +275,12 @@ namespace BLL
                 // Envia al nuevo s observador el texto actual.
                 observer.OnNext(iCurrentImage);
             }
-            return new Unsubscriber<byte[]>(observers, observer);
+            return new Unsubscriber<IEnumerable<byte[]>>(observers, observer);
+        }
+
+        public void RefreshCampaigns()
+        {
+            throw new NotImplementedException();
         }
     }
 

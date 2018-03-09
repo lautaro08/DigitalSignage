@@ -18,6 +18,7 @@ namespace Domain
         /// </summary>
         public string Url { get; set; }
 
+
         /// <summary>
         /// descripcion de la fuente
         /// </summary>
@@ -51,5 +52,6 @@ namespace Domain
 
             return text;
         }
+
     }
 }

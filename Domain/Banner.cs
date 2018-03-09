@@ -54,5 +54,32 @@ namespace Domain
         /// </summary>
         public virtual BannerSource Source { get; set; }
 
+        /// <summary>
+        /// verifica que el banner este activo en este momento
+        /// </summary>
+        /// <returns>verdadero si esta activo, falso en caso contrario</returns>
+        public bool IsActiveNow()
+        {
+
+            bool isActive;
+            var today = DateTime.Now;
+            //se encuentra activo en la fecha
+            isActive = this.InitDate.Date <= today.Date && today.Date <= this.EndDate.Date;
+            isActive &= this.InitTime <= today.TimeOfDay && today.TimeOfDay <= this.EndTime;
+            return isActive;
+
+        }
+
+        /// <summary>
+        /// Obtiene el texto del banner
+        /// </summary>
+        /// <returns></returns>
+        public string GetText()
+        {
+
+            return Source.GetText();
+
+        }
+
     }
 }

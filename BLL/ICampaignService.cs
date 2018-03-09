@@ -11,7 +11,7 @@ namespace BLL
     /// <summary>
     /// Interface para el servicio de campañas
     /// </summary>
-    public interface ICampaignService : IObservable<Byte []>
+    public interface ICampaignService : IObservable<IEnumerable<Byte []>
     {
 
         /// <summary>
@@ -58,6 +58,11 @@ namespace BLL
         /// <param name="pDate"></param>
         /// <returns></returns>
         IEnumerable<CampaignDTO> GetCampaignsByName(string pName);
+
+        /// <summary>
+        /// cancela los procesos de actualizacion actuales y los vuelve a comenzar
+        /// </summary>
+        void RefreshCampaigns();
 
     }
 }

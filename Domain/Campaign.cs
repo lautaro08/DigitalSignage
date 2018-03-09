@@ -54,5 +54,21 @@ namespace Domain
         /// </summary>
         public virtual IList<Image> Images { get; set; }
 
+        /// <summary>
+        /// verifica que el banner este activo en este momento
+        /// </summary>
+        /// <returns>verdadero si esta activo, falso en caso contrario</returns>
+        public bool IsActiveNow()
+        {
+
+            bool isActive;
+            var today = DateTime.Now;
+            //se encuentra activo en la fecha
+            isActive = this.InitDate.Date <= today.Date && today.Date <= this.EndDate.Date;
+            isActive &= this.InitTime <= today.TimeOfDay && today.TimeOfDay <= this.EndTime;
+            return isActive;
+
+        }
+
     }
 }

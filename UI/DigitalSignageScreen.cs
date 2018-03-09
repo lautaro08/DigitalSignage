@@ -8,11 +8,13 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.Threading.Tasks;
+using System.Collections.Generic;
+using DTO;
 
 namespace UI
 {
     public partial class 
-        DigitalSignageScreen : Form , IObserver<string>, IObserver<byte[]>
+        DigitalSignageScreen : Form , IObserver<string>, IObserver<IEnumerable<ImageDTO>>
     {
 
         //resuelve la dependencia para el servicio de campañas
@@ -27,6 +29,15 @@ namespace UI
         //variable para desubscribirse del campaign service
         private Unsubscriber<byte[]> iCampaignUnsubscriber;
 
+        //variable para guardar el texto actual
+        private string iCurrentText;
+
+        //variable para guardar el las imagenes actuales
+        private IEnumerable<ImageDTO> iCurrentImages;
+
+        //guarda el carater que se esta quitando de el iCurrentText
+        private int iCurrentCharacter = 0;
+
         //variable de texto con espacio para que el texto de banner entre por la izquierda
         private string WHITE_SPACE = new String(' ', 250);
 
@@ -37,13 +48,10 @@ namespace UI
             iCampaignUnsubscriber = (Unsubscriber<byte[]>)iCampaignService.Subscribe(this);
             iBannerUnsubscriber = (Unsubscriber<string>)iBannerService.Subscribe(this);
 
-            this.TopMost = true;
-            this.FormBorderStyle = FormBorderStyle.None;
-            this.WindowState = FormWindowState.Maximized;
-
             //inicio del timmer para mover el banner de texto
             timer1.Interval = 100;
             timer1.Start();
+
         }
 
 
@@ -57,15 +65,14 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void OnNext(byte[] bytes)
+        public void OnNext(IEnumerable<ImageDTO> value)
         {
-            var currenImage = byteArrayToImage(bytes);
-            campaignImage.Image = currenImage;
+            throw new NotImplementedException();
         }
 
         public void OnNext(string text)
         {
-            bannerText.Text = WHITE_SPACE + text;
+            iCurrentText = WHITE_SPACE + text;
         }
 
         private void DigitalSignageScreen_KeyDown(object sender, KeyEventArgs e)
@@ -85,6 +92,13 @@ namespace UI
                 //minimizar pantalla
                 this.WindowState = FormWindowState.Maximized;
                 this.FormBorderStyle = FormBorderStyle.None;
+
+            }
+            if (e.KeyCode == Keys.F5)
+            {
+
+                //actualizar banners y campañas
+                iBannerService.RefreshBanners();
 
             }
 
@@ -136,15 +150,28 @@ namespace UI
 
         private void moveBannerText()
         {
-           
-            var currentText = bannerText.Text;
-            if (string.IsNullOrEmpty(currentText))
+
+
+            if (string.IsNullOrEmpty(bannerText.Text))
             {
+                bannerText.Text = iCurrentText;
                 return;
             }
-            bannerText.Text = currentText.Substring(1) + currentText[0];
 
+            //ya paso todo el texto por pantalla
+            if (iCurrentCharacter == bannerText.Text.Length)
+            {
+
+                bannerText.Text = iCurrentText;
+                iCurrentCharacter = 0;
+
+            }
+
+            bannerText.Text = bannerText.Text.Substring(1) + bannerText.Text[0];
+            iCurrentCharacter++;
+            
         }
 
+        
     }
 }

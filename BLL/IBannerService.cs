@@ -59,7 +59,10 @@ namespace BLL
         /// <returns></returns>
         IEnumerable<BannerDTO> GetBannersByName(string pName);
 
-
+        /// <summary>
+        /// cancela los procesos de actualizacion actuales y los vuelve a comenzar
+        /// </summary>
+        void RefreshBanners();
 
     }
 }

@@ -14,7 +14,7 @@ using DTO;
 namespace UI
 {
     public partial class 
-        DigitalSignageScreen : Form , IObserver<string>, IObserver<IEnumerable<ImageDTO>>
+        DigitalSignageScreen : Form , IObserver<string>, IObserver<byte[]>
     {
 
         //resuelve la dependencia para el servicio de campañas
@@ -31,9 +31,6 @@ namespace UI
 
         //variable para guardar el texto actual
         private string iCurrentText;
-
-        //variable para guardar el las imagenes actuales
-        private IEnumerable<ImageDTO> iCurrentImages;
 
         //guarda el carater que se esta quitando de el iCurrentText
         private int iCurrentCharacter = 0;
@@ -65,9 +62,9 @@ namespace UI
             throw new NotImplementedException();
         }
 
-        public void OnNext(IEnumerable<ImageDTO> value)
+        public void OnNext(byte[] value)
         {
-            throw new NotImplementedException();
+            campaignImage.Image = byteArrayToImage(value);
         }
 
         public void OnNext(string text)
@@ -99,6 +96,7 @@ namespace UI
 
                 //actualizar banners y campañas
                 iBannerService.RefreshBanners();
+                iCampaignService.RefreshCampaigns();
 
             }
 

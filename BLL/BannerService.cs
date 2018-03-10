@@ -55,7 +55,7 @@ namespace BLL
             cancellationToken = tokenSource.Token;
 
             GetNextActiveBannersLoop();
-            UpdateBannerListLoop();
+            UpdateBannerListsLoop();
         }
 
         /// <summary>
@@ -241,7 +241,19 @@ namespace BLL
                 oldBanner.InitTime = updatedBanner.InitTime;
                 oldBanner.EndTime = updatedBanner.EndTime;
                 oldBanner.Name = updatedBanner.Name;
-                oldBanner.Source = updatedBanner.Source;
+
+                if (updatedBanner.Source.Id > 0)
+                {
+
+                    oldBanner.SourceId = updatedBanner.Source.Id;
+
+                }
+                else
+                {
+
+                    oldBanner.Source = updatedBanner.Source;
+
+                }
 
                 //Guardando los cambios
                 iUnitOfWork.Complete();
@@ -291,7 +303,7 @@ namespace BLL
         /// <summary>
         /// verifica el estado de los banners para quitarlos de los actuales o agregarlos
         /// </summary>
-        private void UpdateBannerList()
+        private void UpdateBannerLists()
         {
             bool somethingChange = false;
             //verifica que los banners que se estan mostrando no se hayan vencido
@@ -346,13 +358,13 @@ namespace BLL
         /// <summary>
         /// realiza el loop continuo para actualizar las listas 
         /// </summary>
-        private void UpdateBannerListLoop()
+        private void UpdateBannerListsLoop()
         {
 
             var interval = TimeSpan.FromSeconds(REFRESH_TIME_IN_SECONDS);
 
             // TODO: Add a CancellationTokenSource and supply the token here instead of None.
-            RunPeriodicAsync(UpdateBannerList, interval, cancellationToken);
+            RunPeriodicAsync(UpdateBannerLists, interval, cancellationToken);
 
         }
 
@@ -448,7 +460,7 @@ namespace BLL
             cancellationToken = tokenSource.Token;
 
             GetNextActiveBannersLoop();
-            UpdateBannerListLoop();
+            UpdateBannerListsLoop();
 
         }
 

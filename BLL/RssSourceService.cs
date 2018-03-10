@@ -4,6 +4,7 @@ using DAL;
 using DAL.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BLL
 {
@@ -62,11 +63,25 @@ namespace BLL
 
             try
             {
-                log.Info("Eliminando fuente RSS");
-                RssSource RssSource = iUnitOfWork.RssSourceRepository.Get(pRssSourceDTO.Id);
-                iUnitOfWork.RssSourceRepository.Remove(RssSource);
-                iUnitOfWork.Complete();
-                log.Info("fuente RSS eliminada con exito");
+                var asociatedBanners = iUnitOfWork.RssSourceRepository.GetBannersWithSource(pRssSourceDTO.Id);
+
+                if (asociatedBanners.ToList().Count == 0)
+                {
+
+                    log.Info("Eliminando fuente RSS");
+                    RssSource RssSource = iUnitOfWork.RssSourceRepository.Get(pRssSourceDTO.Id);
+                    iUnitOfWork.RssSourceRepository.Remove(RssSource);
+                    iUnitOfWork.Complete();
+                    log.Info("fuente RSS eliminada con exito");
+
+                }
+                else
+                {
+                    throw new Exception("No se puede eliminar la fuente RSS ya que esta siendo usada por banners");
+
+
+                }
+                
 
             }
             catch(ArgumentNullException e)

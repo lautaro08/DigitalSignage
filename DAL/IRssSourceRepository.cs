@@ -17,5 +17,12 @@ namespace DAL
         /// <param name="updatedRssSource"></param>
         void Update(RssSource updatedRssSource);
 
+        /// <summary>
+        /// obtiene los banners que estan asociados a una fuente RSS especifica
+        /// </summary>
+        /// <param name="pSourceId"></param>
+        /// <returns></returns>
+        IEnumerable<Banner> GetBannersWithSource(int pSourceId);
+
     }
 }

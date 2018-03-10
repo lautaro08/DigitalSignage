@@ -55,6 +55,11 @@ namespace Domain
         public virtual BannerSource Source { get; set; }
 
         /// <summary>
+        /// foreign key para fuente de banner
+        /// </summary>
+        public int SourceId { get; set; }
+
+        /// <summary>
         /// verifica que el banner este activo en este momento
         /// </summary>
         /// <returns>verdadero si esta activo, falso en caso contrario</returns>

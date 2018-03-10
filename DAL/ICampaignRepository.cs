@@ -31,5 +31,14 @@ namespace DAL
         /// <returns></returns>
         IEnumerable<Campaign> GetCampaignsByName(string pName);
 
+        /// <summary>
+        /// Obtiene las campañas activas en una fecha y rango de hora específico
+        /// </summary>
+        /// <param name="pDate">Fecha</param>
+        /// <param name="pTimeFrom">Tiempo de inicio para la busqueda</param>
+        /// <param name="pTimeTo">tiempo de fin para la busqueda</param>
+        /// <returns>Lista de bannersactivos en el horario y fecha dados</returns>
+        IEnumerable<Campaign> GetActiveCampaignsInRange(DateTime pDate, TimeSpan pTimeFrom, TimeSpan pTimeTo);
+
     }
 }

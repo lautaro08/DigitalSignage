@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
+using System.Linq;
 
 namespace BLL
 {
@@ -18,13 +20,25 @@ namespace BLL
         private UnitOfWork iUnitOfWork;
 
         //lista de subscriptos para obtener la lista de imagenes actual
-        private List<IObserver<IEnumerable<byte[]>>> observers;
+        private List<IObserver<byte[]>> observers;
 
         //lista de campañas en los proximos <UPDATE_TIME_IN_MINUTES> minutos
-        private List<Banner> iNextCampaigns;
+        private List<Campaign> iNextCampaigns;
 
         //lista de campañas activos en este momento
-        private List<Banner> iCurrentCampaigns;
+        private List<Campaign> iCurrentCampaigns;
+
+        //lista de campañas activos en este momento que se estan mostrando en las pantallas
+        //Sirve para evitar un cambio de golpe cuando se agrega o elimina una campaña de iCurrentCampaigns
+        private List<Campaign> iShowingCampaigns;
+
+        //lista de imagenes (concatenacion de imagenes de campañas actuales)
+        private List<Image> iCurrentImages;
+
+        //indeice de la imagen actual
+        private int iCurrentImageIndex = 0;
+
+        private byte[] iDefaultImage = File.ReadAllBytes("../../../assets/default.png");
 
         //intervalo de tiempo en minutos en los que se vuelve a actualizar la lista actual de campañas
         private const int UPDATE_TIME_IN_MINUTES = 10;
@@ -45,7 +59,18 @@ namespace BLL
 
             this.iUnitOfWork = new UnitOfWork(new DigitalSignageDbContext());
 
-            observers = new List<IObserver<IEnumerable<byte[]>>>();
+            observers = new List<IObserver<byte[]>>();
+            iCurrentCampaigns = new List<Campaign>();
+            iCurrentImages = new List<Image>();
+            iCurrentImageIndex = 0;
+
+            tokenSource = new CancellationTokenSource();
+            cancellationToken = tokenSource.Token;
+
+            GetNextActiveCampaignsLoop();
+            UpdateCampaignListsLoop();
+            UpdateCurrentImageIndex();
+
         }
 
         /// <summary>
@@ -266,21 +291,193 @@ namespace BLL
         /// </summary>
         /// <param name="observer"></param>
         /// <returns></returns>
-        public IDisposable Subscribe(IObserver<IEnumerable<byte[]>> observer)
+        public IDisposable Subscribe(IObserver<byte[]> observer)
         {
             // verifica que el observador no exista en la lista
             if (!observers.Contains(observer))
             {
                 observers.Add(observer);
-                // Envia al nuevo s observador el texto actual.
-                observer.OnNext(iCurrentImage);
+
+                if (iCurrentImages.Count > 0)
+                {
+
+                    // Envia al nuevo s observador la imagen actual.
+                    observer.OnNext(iCurrentImages[iCurrentImageIndex].Bytes);
+
+                }
+                else
+                {
+
+                    // Envia al nuevo s observador la imagen por defecto
+                    observer.OnNext(iDefaultImage);
+
+                }
+                
             }
-            return new Unsubscriber<IEnumerable<byte[]>>(observers, observer);
+            return new Unsubscriber<byte[]>(observers, observer);
+        }
+
+        /// <summary>
+        /// obtiene las campañas que estaran activas en el siguiente lapso de tiempo
+        /// </summary>
+        private void GetNextActiveCmapaigns()
+        {
+            //obtiene las campañas que se encontraran activas en algun momento de los siguientes <UPDATE_TIME_IN_MINUTES> minutos
+            var now = DateTime.Now;
+            var actualTimespan = new TimeSpan(now.Hour, now.Minute, 0);
+            iCurrentCampaigns.Clear();
+            //obtiene las campañas de la base de datos
+            iNextCampaigns = iUnitOfWork.CampaignRepository.GetActiveCampaignsInRange(now, actualTimespan, actualTimespan.Add(TimeSpan.FromMinutes(UPDATE_TIME_IN_MINUTES))).ToList();
+
+        }
+
+        /// <summary>
+        /// verifica el estado de las campañas para quitarlas de las actuales o agregarlas
+        /// </summary>
+        private void UpdateCampaignLists()
+        {
+
+            //verifica que las cmapañas que se estan mostrando no se hayan vencido
+            iCurrentCampaigns.RemoveAll(c =>!c.IsActiveNow() );
+
+            //verifica que no haya nuevas campañas para agregar
+            foreach (Campaign campaign in iNextCampaigns)
+            {
+
+                if (campaign.IsActiveNow())
+                {
+                    iCurrentCampaigns.Add(campaign);
+                }
+
+            }
+            //elimina los elementos de la lista de next campaigns
+            iNextCampaigns.RemoveAll(c => c.IsActiveNow());
+
+        }
+
+        /// <summary>
+        /// actualiza la lista actual de imagenes
+        /// </summary>
+        public void UpdateCurrentImages()
+        {
+
+            iCurrentImages.Clear();
+            foreach (Campaign campaign in iCurrentCampaigns)
+            {
+
+                iCurrentImages.AddRange(campaign.Images);
+
+            }
+
+        }
+
+        public void UpdateCurrentImageIndex()
+        {
+            //verifica que no se haya terminado de recorrer la lista
+            iCurrentImageIndex++;
+            if (iCurrentImageIndex >= iCurrentImages.Count)
+            {
+
+                UpdateCurrentImages();
+                iCurrentImageIndex = 0;
+
+            }
+
+            TimeSpan interval;
+
+            //si hay imagenes para mostrar
+            if (iCurrentImages.Count > 0)
+            {
+
+                //notifica a los observadores
+                foreach (var observer in observers)
+                {
+                    observer.OnNext(iCurrentImages[iCurrentImageIndex].Bytes);
+                }
+
+                //pospone la siguiente actualizacion dependiendo de la duracion de la imagen actual
+                interval = TimeSpan.FromSeconds(iCurrentImages[iCurrentImageIndex].Duration);
+
+            }
+            else
+            {
+
+                //notifica a los observadores con la imagen por default
+                foreach (var observer in observers)
+                {
+                    observer.OnNext(iDefaultImage);
+                }
+
+                //pospone la siguiente actualizacion en un tiempo por defecto
+                interval = TimeSpan.FromSeconds(5);
+
+            }
+
+            Task.Run(async () => {
+
+                await Task.Delay(interval, cancellationToken);
+
+                if (!cancellationToken.IsCancellationRequested)
+                {
+                    UpdateCurrentImageIndex();
+                }
+                
+            }, cancellationToken);
+
+        }
+
+        /// <summary>
+        /// realiza el loop continuo para traer las siguientes campañas
+        /// </summary>
+        private void GetNextActiveCampaignsLoop()
+        {
+
+            var interval = TimeSpan.FromMinutes(UPDATE_TIME_IN_MINUTES);
+
+            // TODO: Add a CancellationTokenSource and supply the token here instead of None.
+            RunPeriodicAsync(GetNextActiveCmapaigns, interval, cancellationToken);
+
+        }
+
+        /// <summary>
+        /// realiza el loop continuo para actualizar las listas 
+        /// </summary>
+        private void UpdateCampaignListsLoop()
+        {
+
+            var interval = TimeSpan.FromSeconds(REFRESH_TIME_IN_SECONDS);
+
+            // TODO: Add a CancellationTokenSource and supply the token here instead of None.
+            RunPeriodicAsync(UpdateCampaignLists, interval, cancellationToken);
+
+        }
+
+        // The `onTick` method will be called periodically unless cancelled.
+        private static async Task RunPeriodicAsync(Action onTick, TimeSpan interval, CancellationToken token)
+        {
+            // Repeat this loop until cancelled.
+            while (!token.IsCancellationRequested)
+            {
+                // Call our onTick function.
+                onTick?.Invoke();
+
+                // Wait to repeat again.
+                if (interval > TimeSpan.Zero)
+                    await Task.Delay(interval, token);
+            }
         }
 
         public void RefreshCampaigns()
         {
-            throw new NotImplementedException();
+            tokenSource.Cancel();
+            tokenSource.Dispose();
+
+            tokenSource = new CancellationTokenSource();
+            cancellationToken = tokenSource.Token;
+
+            GetNextActiveCampaignsLoop();
+            UpdateCampaignListsLoop();
+            UpdateCurrentImageIndex();
         }
     }
 

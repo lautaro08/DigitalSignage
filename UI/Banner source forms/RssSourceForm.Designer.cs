@@ -125,6 +125,7 @@
             this.urlTextBox.UseSelectable = true;
             this.urlTextBox.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.urlTextBox.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
+            this.urlTextBox.TextChanged += new System.EventHandler(this.urlTextBox_TextChanged);
             this.urlTextBox.Validating += new System.ComponentModel.CancelEventHandler(this.urlTextBox_Validating);
             // 
             // urlLabel

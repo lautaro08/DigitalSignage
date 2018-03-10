@@ -213,5 +213,11 @@ namespace UI.Banner_source_forms
             
             bwRssReader.RunWorkerAsync(mUrl);
         }
+
+        private void urlTextBox_TextChanged(object sender, EventArgs e)
+        {
+            feedsGridView.DataSource = null;
+            iRssSourceModel.RssItems = new List<RssItemDTO>();
+        }
     }
 }

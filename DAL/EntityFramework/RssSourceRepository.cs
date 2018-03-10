@@ -18,6 +18,13 @@ namespace DAL.EntityFramework
         {
         }
 
+        public IEnumerable<Banner> GetBannersWithSource(int pSourceId)
+        {
+            return this.iDbContext.Banners
+                .Where(b => b.SourceId == pSourceId)
+                .ToList();
+        }
+
         public void Update(RssSource updatedRssSource)
         {
             //verifica y actualiza el estados de las entidades Imagenes relacionadas con la campaña

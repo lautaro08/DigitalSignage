@@ -35,6 +35,7 @@ namespace DAL.EntityFramework
                 .Where(b => DbFunctions.TruncateTime(b.EndDate) >= DbFunctions.TruncateTime(pDate))
                 //compara para saber si el banner esta activo en el rango horario
                 .Where(b => b.InitTime <= pEndTime && b.EndTime >= pInitTime)
+                .Include("source")
                 .ToList();
 
         }
@@ -47,6 +48,7 @@ namespace DAL.EntityFramework
             return base.iDbContext.Set<Banner>()
                 .Where(c => DbFunctions.TruncateTime(c.InitDate) <= DbFunctions.TruncateTime(pDate))
                 .Where(c => DbFunctions.TruncateTime(c.EndDate) >= DbFunctions.TruncateTime(pDate))
+                .Include("source")
                 .ToList();
         }
 
@@ -57,6 +59,7 @@ namespace DAL.EntityFramework
 
             return base.iDbContext.Set<Banner>()
                 .Where(c => c.Name.IndexOf(pName) >= 0)
+                .Include("source")
                 .ToList();
         }
 

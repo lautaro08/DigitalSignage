@@ -76,5 +76,10 @@ namespace UI
             this.StyleManager.Clone(digitalSignageScreen);
             digitalSignageScreen.Show(this);
         }
+
+        private void helpButton_Click(object sender, EventArgs e)
+        {
+            Help.ShowHelp(this, "../../../assets/DigitalSignage.chm");
+        }
     }
 }

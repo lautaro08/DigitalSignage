@@ -43,6 +43,7 @@
             this.openRssSourceAdmin = new MetroFramework.Controls.MetroButton();
             this.lightThemeButton = new System.Windows.Forms.Button();
             this.darkThemeButton = new System.Windows.Forms.Button();
+            this.helpButton = new MetroFramework.Controls.MetroButton();
             ((System.ComponentModel.ISupportInitialize)(this.msmMain)).BeginInit();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
@@ -271,11 +272,23 @@
             this.darkThemeButton.UseVisualStyleBackColor = false;
             this.darkThemeButton.Click += new System.EventHandler(this.setDarkTheme);
             // 
+            // helpButton
+            // 
+            this.helpButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.helpButton.Location = new System.Drawing.Point(1235, 452);
+            this.helpButton.Name = "helpButton";
+            this.helpButton.Size = new System.Drawing.Size(103, 37);
+            this.helpButton.TabIndex = 6;
+            this.helpButton.Text = "NEED HELP ?";
+            this.helpButton.UseSelectable = true;
+            this.helpButton.Click += new System.EventHandler(this.helpButton_Click);
+            // 
             // MainView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1361, 497);
+            this.Controls.Add(this.helpButton);
             this.Controls.Add(this.lightThemeButton);
             this.Controls.Add(this.darkThemeButton);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -304,5 +317,6 @@
         private System.Windows.Forms.Button lightThemeButton;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private MetroFramework.Controls.MetroButton openRssSourceAdmin;
+        private MetroFramework.Controls.MetroButton helpButton;
     }
 }

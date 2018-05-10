@@ -1,12 +1,17 @@
 [OPTIONS]
 Compatibility=1.1 or later
-Compiled file=c:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\DigitalSignage.chm
-Contents file=Table of Contents.hhc
+Compiled file=DigitalSignage.chm
+Contents file=c:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\DigitalSignageContents
+Default topic=C:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\BannerAdmin.html
 Display compile progress=No
-Index file=c:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Index.hhk
 Language=0x2c0a Español (Argentina)
-Title=DigitalSignage
 
+
+[FILES]
+C:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\BannerAdmin.html
+C:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\CampaignAdmin.html
+C:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\FuentesRSS.html
+C:\Users\Lautaro.LaNave\Desktop\facu\Taller de programacion\DigitalSignage\assets\Help\Main.html
 
 [INFOTYPES]
 

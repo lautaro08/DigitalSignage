@@ -422,5 +422,9 @@ namespace UI
 
         }
 
+        private void BannerAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

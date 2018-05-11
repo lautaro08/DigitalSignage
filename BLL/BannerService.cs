@@ -54,6 +54,7 @@ namespace BLL
             tokenSource = new CancellationTokenSource();
             cancellationToken = tokenSource.Token;
 
+            log.Info("Iniciando tareas asincronas...");
             GetNextActiveBannersLoop();
             UpdateBannerListsLoop();
         }
@@ -278,6 +279,7 @@ namespace BLL
             // verifica que el observador no exista en la lista
             if (!observers.Contains(observer))
             {
+                log.Info("Se ha añadido un subscriptor al banner service");
                 observers.Add(observer);
                 // Envia al nuevo s observador el texto actual.
                 observer.OnNext(iCurrentText);
@@ -295,6 +297,7 @@ namespace BLL
             var actualTimespan = new TimeSpan(now.Hour, now.Minute, 0);
             iCurrentBanners.Clear();
             //obtiene los banner de la base de datos
+            log.Info("Obteniendo banners activos");
             iNextBanners = iUnitOfWork.BannerRepository.GetActiveBannersInRange(now, actualTimespan, actualTimespan.Add(TimeSpan.FromMinutes(UPDATE_TIME_IN_MINUTES))).ToList();
             //actualiza los feeds rss de los banners
             UpdateRssSources();
@@ -383,6 +386,9 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// Actualiza los feed Rss de los banners siguientes
+        /// </summary>
         private void UpdateRssSources()
         {
 
@@ -402,14 +408,12 @@ namespace BLL
                             var newRssItems = mRssReader.Read(uri).ToList();
                             if (newRssItems != null && newRssItems.Count > 0)
                             {
-
                                 source.RssItems = AutoMapper.Mapper.Map<IList<RssItemDTO>, IList<RssItem>>(newRssItems);
-
                             }
                         }
                         catch (Exception)
                         {
-
+                            log.DebugFormat("Error al actualizar los feeds del banner {0}", banner.Id);
                             return;
                         }
                         
@@ -427,7 +431,7 @@ namespace BLL
         /// </summary>
         public void UpdateCurrentText()
         {
-
+            log.Info("Actualizando el texto del banner...");
             string updatedText = "";
             foreach (Banner banner in iCurrentBanners)
             {
@@ -451,7 +455,7 @@ namespace BLL
         /// </summary>
         public void RefreshBanners()
         {
-
+            log.Info("Actualizando todo el servicio de banner...");
 
             tokenSource.Cancel();
             tokenSource.Dispose();

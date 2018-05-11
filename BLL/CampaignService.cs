@@ -67,6 +67,7 @@ namespace BLL
             tokenSource = new CancellationTokenSource();
             cancellationToken = tokenSource.Token;
 
+            log.Info("Iniciando tareas asincronas...");
             GetNextActiveCampaignsLoop();
             UpdateCampaignListsLoop();
             UpdateCurrentImageIndex();
@@ -300,7 +301,7 @@ namespace BLL
 
                 if (iCurrentImages.Count > 0)
                 {
-
+                    log.Info("Se ha añadido un subscriptor al banner campaign service...");
                     // Envia al nuevo s observador la imagen actual.
                     observer.OnNext(iCurrentImages[iCurrentImageIndex].Bytes);
 
@@ -326,6 +327,8 @@ namespace BLL
             var now = DateTime.Now;
             var actualTimespan = new TimeSpan(now.Hour, now.Minute, 0);
             iCurrentCampaigns.Clear();
+
+            log.Info("Obteniendo campañas activas");
             //obtiene las campañas de la base de datos
             iNextCampaigns = iUnitOfWork.CampaignRepository.GetActiveCampaignsInRange(now, actualTimespan, actualTimespan.Add(TimeSpan.FromMinutes(UPDATE_TIME_IN_MINUTES))).ToList();
 
@@ -371,6 +374,9 @@ namespace BLL
 
         }
 
+        /// <summary>
+        /// Actualiza la imagen que se esta mostrando actualmente y notifica a los observadores si hay algun cambio
+        /// </summary>
         public void UpdateCurrentImageIndex()
         {
             //verifica que no se haya terminado de recorrer la lista
@@ -467,8 +473,13 @@ namespace BLL
             }
         }
 
+        /// <summary>
+        /// Reinicia todas las tareas asincronas del servicio
+        /// </summary>
         public void RefreshCampaigns()
         {
+            log.Info("Actualizando todo el servicio de campañas...");
+
             tokenSource.Cancel();
             tokenSource.Dispose();
 

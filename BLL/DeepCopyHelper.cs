@@ -8,6 +8,10 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
+
+    /// <summary>
+    /// Clase de ayuda para hacer deep copy de un objeto
+    /// </summary>
     public static class DeepCopyHelper
     {
 
